@@ -1,4 +1,4 @@
-package com.netcracker.du.fapi;
+package com.netcracker.edu.fapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
