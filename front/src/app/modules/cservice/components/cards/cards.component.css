@@ -1,0 +1,24 @@
+.card {
+  background-color: #e3e3e3;
+  cursor: pointer;
+  width: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .2);
+}
+
+.card:hover rect {
+  fill: rgba(85, 89, 92, .8);
+}
+
+.reg-button button {
+  margin-top: 50px;
+  width: 250%;
+  height: 75%;
+}
+
+.post-form label {
+  color: #e3e3e3;
+}
+

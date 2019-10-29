@@ -1,0 +1,62 @@
+<div class="row justify-content-center pt-5">
+  <div class="d-flex m-5" *ngFor="let cservice of cservices"
+  [class.selected]="cservice === isSelected"
+  (click)="select(cservice)">
+    <div class="card">
+
+      <svg class="bd-placeholder-img card-img-top" width="100%" height="225">
+        <title>
+          Icon
+        </title>
+        <rect width="100%" height="100%" fill="#55595c"></rect>
+        <text x="50%" y="50%" text-anchor="middle" fill="#eceeef" class="h5">
+          {{cservice.name}}
+        </text>
+      </svg>
+
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div>Cost: <strong class="h2">{{cservice.cost}}$</strong>/mo </div>
+          <button type="button" class="btn btn-warning">
+            Subscribe
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="reg-button">
+    <button class="btn btn-primary" (click)="post()">Add service</button>
+  </div>
+</div>
+
+<div *ngIf="isPost" class="post-form">
+
+  <form method="post">
+    <div class="col-2 ml-2 mt-2">
+      <div class="form-group">
+        <label for="serviceName">
+          Service name:
+        </label>
+        <input id="serviceName" placeholder="Name" class="form-control" name="name" [(ngModel)]="cservice.name">
+      </div>
+      <div class="form-group">
+        <label for="serviceCost">
+          Cost:
+        </label>
+        <input id="serviceCost" placeholder="Cost" class="form-control" name="cost" [(ngModel)]="cservice.cost">
+      </div>
+      <div class="form-group">
+        <label for="serviceGenre">
+          Genre:
+        </label>
+        <input id="serviceGenre" placeholder="Genre" class="form-control" name="genre" [(ngModel)]="cservice.genre">
+      </div>
+      <button type="submit" class="btn btn-warning" (click)="postCService()">POST</button>
+    </div>
+  </form>
+
+
+</div>
+
+<app-card-detail [cservice]="isSelected" (delete)="delete($event)"></app-card-detail>

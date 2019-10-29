@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {HeaderModule} from '../header/header.module';
 import {RouterModule} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
+import {CServiceModule} from '../cservice/c-service.module';
 
 
 @NgModule({
@@ -9,6 +10,7 @@ import {HomeComponent} from './components/home/home.component';
     HomeComponent
   ],
   imports: [
+    CServiceModule,
     HeaderModule,
     RouterModule
   ],
