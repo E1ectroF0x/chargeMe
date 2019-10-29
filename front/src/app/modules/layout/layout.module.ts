@@ -3,11 +3,15 @@ import {HeaderModule} from '../header/header.module';
 import {RouterModule} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
 import {CServiceModule} from '../cservice/c-service.module';
+import {LoginComponent} from './components/login/login.component';
+import {RegistrationComponent} from './components/registration/registration.component';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     CServiceModule,
@@ -15,6 +19,6 @@ import {CServiceModule} from '../cservice/c-service.module';
     RouterModule
   ],
   providers: [],
-  exports: [HomeComponent]
+  exports: [HomeComponent, LoginComponent, RegistrationComponent]
 })
 export class LayoutModule { }
