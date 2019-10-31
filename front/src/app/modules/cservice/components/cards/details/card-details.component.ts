@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CService} from '../../models/c-service';
-import {CServiceService} from '../../../../services/c-service.service';
+import {CService} from '../../../models/c-service';
+import {CServiceService} from '../../../../../services/c-service.service';
 
 
 @Component ({
@@ -11,7 +11,7 @@ import {CServiceService} from '../../../../services/c-service.service';
 export class CardDetailsComponent {
 
   @Input() cservice: CService;
-  @Output() delete = new EventEmitter();
+  @Output() delete: EventEmitter<any> = new EventEmitter();
 
   constructor(private cserviceService: CServiceService) {}
 

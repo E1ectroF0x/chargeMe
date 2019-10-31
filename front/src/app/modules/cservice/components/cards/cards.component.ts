@@ -50,15 +50,7 @@ export class CardsComponent implements OnInit, OnDestroy {
   }
 
   private select(cservice: CService): void {
-    if (this.isSelected === cservice) {
-      this.isSelected = null;
-    } else {
-      this.isSelected = cservice;
-    }
-  }
-
-  private post(): void {
-    this.isPost = true;
+    this.isSelected = this.isSelected === cservice ? null : cservice;
   }
 
   ngOnDestroy(): void {

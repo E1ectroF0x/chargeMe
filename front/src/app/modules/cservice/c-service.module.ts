@@ -4,7 +4,7 @@ import {CServiceService} from '../../services/c-service.service';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
-import {CardDetailsComponent} from './components/details/card-details.component';
+import {CardDetailsComponent} from './components/cards/details/card-details.component';
 import {FormsModule} from '@angular/forms';
 
 
