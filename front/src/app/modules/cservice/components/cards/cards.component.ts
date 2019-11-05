@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {CServiceService} from '../../../../services/c-service.service';
 import {CService} from '../../models/c-service';
 import {Subscription} from 'rxjs';
@@ -13,11 +13,8 @@ export class CardsComponent implements OnInit, OnDestroy {
 
   public cservices: CService[];
   public subscriptions: Subscription[] = [];
-
   public isSelected: CService;
-  public isPost: boolean;
-
-  private cservice: CService = new CService();
+  @Input() public isPost;
 
   constructor(private cserviceService: CServiceService) {}
 
@@ -40,12 +37,13 @@ export class CardsComponent implements OnInit, OnDestroy {
 
   private loadCServices(): void {
     this.subscriptions.push(this.cserviceService.getCServices().subscribe(accounts => {
-      this.cservices = accounts as CService[];
+      this.cservices = accounts;
     }));
   }
 
-  private postCService(): void {
-    this.subscriptions.push(this.cserviceService.saveCService(this.cservice).subscribe(() =>
+  @Input()
+  private postCService(cservice: CService): void {
+    this.subscriptions.push(this.cserviceService.saveCService(cservice).subscribe(() =>
       this._updateCServices()));
   }
 

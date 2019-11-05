@@ -1,4 +1,4 @@
-.card {
+/*.card {
   background-color: #e3e3e3;
   cursor: pointer;
   width: 100%;
@@ -12,12 +12,35 @@
   fill: rgba(85, 89, 92, .8);
 }
 
-.reg-button button {
-  border: 1px solid #e3e3e3;
-  width: 300px;
-  height: 100%
+ */
+
+.main {
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 100px;
 }
 
-.post-form label {
-  color: #e3e3e3;
+.card-top {
+  height: 120px;
+  width: 120px;
+  background-color: rgba(255, 255, 255, .75);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.round {
+  width: 90%;
+  height: auto;
+
+}
+
+.card-add-button button {
+  font-family: "Segoe UI", serif;
+  background-color: rgba(0,123,255,.75);
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+  border: none;
 }

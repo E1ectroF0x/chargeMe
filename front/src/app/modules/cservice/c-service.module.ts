@@ -6,12 +6,14 @@ import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {CardDetailsComponent} from './components/cards/details/card-details.component';
 import {FormsModule} from '@angular/forms';
+import {PostFormComponent} from './components/cards/post-form/post-form.component';
 
 
 @NgModule({
   declarations: [
     CardsComponent,
-    CardDetailsComponent
+    CardDetailsComponent,
+    PostFormComponent
   ],
   imports: [
     HttpClientModule,
@@ -22,7 +24,8 @@ import {FormsModule} from '@angular/forms';
   providers: [CServiceService],
   exports: [
     CardsComponent,
-    CardDetailsComponent
+    CardDetailsComponent,
+    PostFormComponent
   ]
 })
 export class CServiceModule {}

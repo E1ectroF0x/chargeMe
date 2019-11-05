@@ -9,8 +9,11 @@
             <h3>Description:</h3>
             <h5>Service name: {{cservice.name}}</h5>
             <h5>Genre: {{cservice.genre}}</h5>
-            <p >*description*</p>
-            <button class="btn btn-primary" (click)="onDelete(cservice)">Delete</button>
+            <h5>Cost: <span class="cost-span">{{cservice.cost}}$</span>/mo</h5>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-warning" (click)="onSubscribe(cservice)">Subscribe</button>
+              <button class="btn btn-primary mr-1" (click)="onDelete(cservice)">Delete</button>
+            </div>
           </div>
 
 
