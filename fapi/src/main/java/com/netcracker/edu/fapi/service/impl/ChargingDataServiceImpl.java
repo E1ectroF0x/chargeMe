@@ -1,6 +1,8 @@
 package com.netcracker.edu.fapi.service.impl;
 
+import com.netcracker.edu.fapi.models.CService;
 import com.netcracker.edu.fapi.models.ChargingData;
+import com.netcracker.edu.fapi.models.ChargingDataViewModel;
 import com.netcracker.edu.fapi.models.Customer;
 import com.netcracker.edu.fapi.service.ChargingDataService;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,8 +34,15 @@ public class ChargingDataServiceImpl implements ChargingDataService {
     }
 
     @Override
-    public ChargingData save(ChargingData chargingData) {
+    public List<CService> findAllByWallet(Long wallet_id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/subscriptions", chargingData, ChargingData.class).getBody();
+        CService[] chargingDataResponse = restTemplate.getForObject(backendServerUrl + "/api/subscriptions/wallet/" + wallet_id, CService[].class);
+        return chargingDataResponse == null ? Collections.emptyList() : Arrays.asList(chargingDataResponse);
+    }
+
+    @Override
+    public ChargingDataViewModel save(ChargingDataViewModel model) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(backendServerUrl + "/api/subscriptions/", model, ChargingDataViewModel.class).getBody();
     }
 }

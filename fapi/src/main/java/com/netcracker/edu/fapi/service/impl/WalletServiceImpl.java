@@ -19,7 +19,7 @@ public class WalletServiceImpl implements WalletService {
     @Override
     public List<Wallet> getWalletsByCustomer(Long customer_id) {
         RestTemplate restTemplate = new RestTemplate();
-        Wallet[] wallets = restTemplate.getForObject(backendServerUrl + "/api/wallets/customer/" + customer_id, Wallet[].class);
+        Wallet[] wallets = restTemplate.getForObject(backendServerUrl + "/api/wallets/" + customer_id, Wallet[].class);
         return wallets == null ? Collections.emptyList() : Arrays.asList(wallets);
     }
 

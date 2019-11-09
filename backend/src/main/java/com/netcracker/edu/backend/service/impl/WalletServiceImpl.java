@@ -17,7 +17,12 @@ public class WalletServiceImpl implements WalletService {
     private WalletRepository walletRepository;
 
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
+
+    @Override
+    public List<Wallet> getWalletsByCustomer(Long customer_id) {
+        return walletRepository.findAllByCustomer_id(customer_id);
+    }
 
     @Override
     public List<Wallet> getAllWallets() {

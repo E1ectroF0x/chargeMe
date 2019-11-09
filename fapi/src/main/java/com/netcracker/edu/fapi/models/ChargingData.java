@@ -1,13 +1,18 @@
 package com.netcracker.edu.fapi.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class ChargingData {
 
     private Long id;
     private Date startDate;
+    @JsonProperty("customerId")
     private Customer customer;
+    @JsonProperty("serviceId")
     private CService cService;
+    @JsonProperty("walletId")
     private Wallet wallet;
 
     public ChargingData() {}

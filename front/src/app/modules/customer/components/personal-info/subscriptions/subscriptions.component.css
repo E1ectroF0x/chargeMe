@@ -1,0 +1,27 @@
+.main {
+  margin: 100px 150px 0 150px;
+  display: flex;
+  justify-content: center;
+}
+
+.cards {
+  margin-top: 30px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.card-top {
+  height: 120px;
+  width: 120px;
+  background-color: rgba(255, 255, 255, .75);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.round {
+  width: 90%;
+  height: auto;
+}

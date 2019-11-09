@@ -1,6 +1,8 @@
 package com.netcracker.edu.fapi.controller;
 
+import com.netcracker.edu.fapi.models.CService;
 import com.netcracker.edu.fapi.models.ChargingData;
+import com.netcracker.edu.fapi.models.ChargingDataViewModel;
 import com.netcracker.edu.fapi.service.ChargingDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +26,12 @@ public class ChargingDataController {
         return chargingDataService.findAllByCustomer(id);
     }
 
-    @PostMapping
-    public ChargingData saveSubscription(@RequestBody ChargingData chargingData) {
-        return chargingDataService.save(chargingData);
+    @GetMapping(value = "/wallet/{id}")
+    public List<CService> getByWallet(@PathVariable Long id) { return chargingDataService.findAllByWallet(id); }
+
+    @PostMapping()
+    public ChargingDataViewModel saveSubscription(@RequestBody ChargingDataViewModel model) {
+        return chargingDataService.save(model);
     }
 
 }

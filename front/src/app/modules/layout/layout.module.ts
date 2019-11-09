@@ -5,20 +5,24 @@ import {HomeComponent} from './components/home/home.component';
 import {CServiceModule} from '../cservice/c-service.module';
 import {LoginComponent} from './components/login/login.component';
 import {RegistrationComponent} from './components/registration/registration.component';
+import {AccountComponent} from './components/account/account.component';
+import {CustomerModule} from '../customer/customer.module';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AccountComponent
   ],
   imports: [
+    CustomerModule,
     CServiceModule,
     HeaderModule,
     RouterModule
   ],
   providers: [],
-  exports: [HomeComponent, LoginComponent, RegistrationComponent]
+  exports: [HomeComponent, LoginComponent, RegistrationComponent, AccountComponent]
 })
 export class LayoutModule { }

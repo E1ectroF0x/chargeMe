@@ -4,6 +4,7 @@ import com.netcracker.edu.backend.entity.CService;
 import com.netcracker.edu.backend.entity.ChargingData;
 import com.netcracker.edu.backend.entity.Customer;
 import com.netcracker.edu.backend.entity.Wallet;
+import com.netcracker.edu.backend.models.ChargingDataViewModel;
 import com.netcracker.edu.backend.repository.CServiceRepository;
 import com.netcracker.edu.backend.repository.ChargingDataRepository;
 import com.netcracker.edu.backend.repository.CustomerRepository;
@@ -12,6 +13,7 @@ import com.netcracker.edu.backend.service.ChargingDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -35,10 +37,22 @@ public class ChargingDataServiceImpl implements ChargingDataService {
     }
 
     @Override
-    public ChargingData saveSubscription(ChargingData chargingData, Long service_id, Long customer_id, Long wallet_id) {
-        CService cService = cServiceRepository.findById(service_id).orElse(null);
-        Customer customer = customerRepository.findById(customer_id).orElse(null);
+    public List<CService> getAllByWallet(Long wallet_id) {
         Wallet wallet = walletRepository.findById(wallet_id).orElse(null);
+        List<ChargingData> subs = chargingDataRepository.findAllByWalletId(wallet);
+        List<CService> cservices = new ArrayList<>();
+        for (ChargingData data : subs) {
+            cservices.add(data.getServiceId());
+        }
+        return cservices;
+    }
+
+    @Override
+    public ChargingData saveSubscription(ChargingDataViewModel model) {
+        CService cService = cServiceRepository.findById(model.getCservice_id()).orElse(null);
+        Customer customer = customerRepository.findById(model.getCustomer_id()).orElse(null);
+        Wallet wallet = walletRepository.findById(model.getWallet_id()).orElse(null);
+        ChargingData chargingData = new ChargingData();
         chargingData.setServiceId(cService);
         chargingData.setCustomerId(customer);
         chargingData.setWalletId(wallet);

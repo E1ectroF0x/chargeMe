@@ -7,12 +7,14 @@ import {HomeComponent} from './modules/layout/components/home/home.component';
 import {LayoutModule} from './modules/layout/layout.module';
 import {LoginComponent} from './modules/layout/components/login/login.component';
 import {RegistrationComponent} from './modules/layout/components/registration/registration.component';
+import {AccountComponent} from './modules/layout/components/account/account.component';
 
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationComponent}
+  {path: 'registration', component: RegistrationComponent},
+  {path: 'account', component: AccountComponent}
 ];
 
 @NgModule({

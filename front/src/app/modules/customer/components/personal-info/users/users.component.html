@@ -1,0 +1,36 @@
+<div class="content" *ngIf="isClicked">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          #
+        </th>
+        <th scope="col">
+          Username
+        </th>
+        <th scope="col">
+          Email
+        </th>
+        <th scope="col">
+          Total amount
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row">
+          {{user.id}}
+        </th>
+        <td>
+          {{user.username}}
+        </td>
+        <td>
+          {{user.email}}
+        </td>
+        <td>
+          {{user.totalMoney}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -2,6 +2,8 @@ import {Component, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {CServiceService} from '../../../../services/c-service.service';
 import {CService} from '../../models/c-service';
 import {Subscription} from 'rxjs';
+import {ChargingDataService} from '../../../../services/charging-data.service';
+import {ChargingDataViewModel} from '../../models/ChargingDataViewModel';
 
 
 @Component({
@@ -16,7 +18,8 @@ export class CardsComponent implements OnInit, OnDestroy {
   public isSelected: CService;
   @Input() public isPost;
 
-  constructor(private cserviceService: CServiceService) {}
+  constructor(private cserviceService: CServiceService,
+              private chargingDataService: ChargingDataService) {}
 
   ngOnInit(): void {
     this.loadCServices();
@@ -27,6 +30,13 @@ export class CardsComponent implements OnInit, OnDestroy {
   @Input()
   private delete(cservice: CService): void {
     this.subscriptions.push(this.cserviceService.deleteCService(cservice.id).subscribe( () => {
+      this._updateCServices();
+    }));
+  }
+
+  @Input()
+  private subscribe(cservice: CService): void {
+    this.subscriptions.push(this.chargingDataService.subscribe(new ChargingDataViewModel(cservice.id, '1', '6')).subscribe(() => {
       this._updateCServices();
     }));
   }

@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.models.User;
+import com.netcracker.edu.fapi.models.UserViewModel;
 import com.netcracker.edu.fapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /*
     @GetMapping(value = "/all")
     public List<User> getAll() {
+        return userService.getAll();
+    }
+    */
+
+    @GetMapping(value = "/all")
+    public List<UserViewModel> getAll() {
         return userService.getAll();
     }
 

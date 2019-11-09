@@ -19,6 +19,9 @@ public class WalletController {
         return walletService.getAllWallets();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public List<Wallet> getAllByCustomer(@PathVariable Long id) { return walletService.getWalletsByCustomer(id); }
+
     @RequestMapping(method = RequestMethod.POST)
     public Wallet save(@RequestBody Wallet wallet, @PathVariable Long customer_id) {
         return walletService.saveWallet(wallet, customer_id);

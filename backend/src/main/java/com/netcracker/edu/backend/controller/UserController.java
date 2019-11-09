@@ -1,6 +1,7 @@
 package com.netcracker.edu.backend.controller;
 
 import com.netcracker.edu.backend.entity.User;
+import com.netcracker.edu.backend.models.UserViewModel;
 import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +16,19 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public List<UserViewModel> getAll() { return userService.getAll(); }
+
+    /*
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> getAll() {
         return userService.getAllUsers();
     }
+    */
 
     @RequestMapping(method = RequestMethod.POST)
-    public User save(@RequestBody User user) {
-        return userService.saveUser(user);
-    }
+    public User save(@RequestBody User user) { return userService.saveUser(user); }
 
     @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable Long id) {
-        userService.deleteUser(id);
-    }
+    public void delete(@PathVariable Long id) { userService.deleteUser(id); }
 
 }

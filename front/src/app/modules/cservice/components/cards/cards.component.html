@@ -14,5 +14,5 @@
 </div>
 
 <app-card-post-form [isPost]="isPost" (post)="postCService($event)" (isPostChange)="isPost = false"></app-card-post-form>
-<app-card-detail [cservice]="isSelected" (delete)="delete($event)"></app-card-detail>
+<app-card-detail [cservice]="isSelected" (delete)="delete($event)" (subscribe)="subscribe($event)"></app-card-detail>
 

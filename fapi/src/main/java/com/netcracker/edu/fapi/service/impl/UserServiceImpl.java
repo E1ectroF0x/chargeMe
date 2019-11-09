@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.service.impl;
 
 import com.netcracker.edu.fapi.models.User;
+import com.netcracker.edu.fapi.models.UserViewModel;
 import com.netcracker.edu.fapi.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -24,11 +25,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserViewModel> getAll() {
+        RestTemplate restTemplate = new RestTemplate();
+        UserViewModel[] userResponse = restTemplate.getForObject(backendServerUrl + "/api/users/all", UserViewModel[].class);
+        return userResponse == null ? Collections.emptyList() : Arrays.asList(userResponse);
+    }
+
+    /*
+    @Override
     public List<User> getAll() {
         RestTemplate restTemplate = new RestTemplate();
         User[] userResponse = restTemplate.getForObject(backendServerUrl + "/api/users/all", User[].class);
         return userResponse == null ? Collections.emptyList() : Arrays.asList(userResponse);
     }
+    */
 
     @Override
     public User save(User user) {
