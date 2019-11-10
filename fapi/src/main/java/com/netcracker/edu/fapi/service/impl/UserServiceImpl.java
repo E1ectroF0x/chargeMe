@@ -1,5 +1,6 @@
 package com.netcracker.edu.fapi.service.impl;
 
+import com.netcracker.edu.fapi.models.RegistrationViewModel;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.models.UserViewModel;
 import com.netcracker.edu.fapi.service.UserService;
@@ -31,6 +32,12 @@ public class UserServiceImpl implements UserService {
         return userResponse == null ? Collections.emptyList() : Arrays.asList(userResponse);
     }
 
+    @Override
+    public void save(RegistrationViewModel model) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.postForEntity(backendServerUrl + "/api/users", model, User.class);
+    }
+
     /*
     @Override
     public List<User> getAll() {
@@ -39,10 +46,11 @@ public class UserServiceImpl implements UserService {
         return userResponse == null ? Collections.emptyList() : Arrays.asList(userResponse);
     }
     */
-
+    /*
     @Override
     public User save(User user) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "/api/users", user, User.class).getBody();
     }
+    */
 }

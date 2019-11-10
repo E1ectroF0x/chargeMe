@@ -25,7 +25,9 @@
     </div>
 
   <div class="col subscriptions">
-    <app-customer-personal-sub [wallet]="selectedWallet" *ngIf="selectedWallet"></app-customer-personal-sub>
+    <app-customer-personal-sub [wallet]="selectedWallet" *ngIf="selectedWallet" (showCService)="showSubDetails($event)"></app-customer-personal-sub>
   </div>
 
 </div>
+
+<app-customer-personal-sub-info [cservice]="showSub" ></app-customer-personal-sub-info>

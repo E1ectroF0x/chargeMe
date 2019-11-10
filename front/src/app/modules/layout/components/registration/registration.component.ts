@@ -1,4 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
+import {UsersService} from '../../../../services/users.service';
+import {Subscription} from 'rxjs';
+import {RegistrationModel} from './models/registration-model';
 
 
 @Component ({
@@ -6,9 +9,18 @@ import {Component} from '@angular/core';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnDestroy {
 
-  constructor() {}
+  private subscriptions: Subscription[] = [];
+  public model: RegistrationModel = new RegistrationModel();
+  constructor(private usersService: UsersService) {}
 
+  public registerUser(model: RegistrationModel): void {
+    this.subscriptions.push(this.usersService.postUser(model).subscribe());
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
 
 }

@@ -11,6 +11,6 @@ import java.util.List;
 public interface WalletRepository extends CrudRepository<Wallet, Long> {
 
     @Query(value = "SELECT * FROM `wallets` WHERE `customer_id` = customer_id", nativeQuery = true)
-    List<Wallet> findAllByCustomer_id(Long customer_id);
+    List<Wallet> findAllByCustomer_id(Long customer);
 }
 

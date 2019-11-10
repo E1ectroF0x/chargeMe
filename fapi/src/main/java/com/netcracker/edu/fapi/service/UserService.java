@@ -1,5 +1,6 @@
 package com.netcracker.edu.fapi.service;
 
+import com.netcracker.edu.fapi.models.RegistrationViewModel;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.models.UserViewModel;
 
@@ -10,6 +11,7 @@ public interface UserService {
     User getUserByLogin(String login);
     List<UserViewModel> getAll();
     //List<User> getAll();
-    User save(User user);
+    //User save(User user);
+    void save(RegistrationViewModel model);
 
 }

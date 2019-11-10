@@ -7,6 +7,8 @@ import {LoginComponent} from './components/login/login.component';
 import {RegistrationComponent} from './components/registration/registration.component';
 import {AccountComponent} from './components/account/account.component';
 import {CustomerModule} from '../customer/customer.module';
+import {UsersService} from '../../services/users.service';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -20,9 +22,12 @@ import {CustomerModule} from '../customer/customer.module';
     CustomerModule,
     CServiceModule,
     HeaderModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    UsersService
+  ],
   exports: [HomeComponent, LoginComponent, RegistrationComponent, AccountComponent]
 })
 export class LayoutModule { }

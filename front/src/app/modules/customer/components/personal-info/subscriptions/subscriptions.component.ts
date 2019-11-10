@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Wallet} from '../../../models/wallet';
 import {CustomerService} from '../../../../../services/customer.service';
 import {CServiceService} from '../../../../../services/c-service.service';
@@ -17,6 +17,7 @@ export class SubscriptionsComponent implements OnInit, OnDestroy {
   @Input() wallet: Wallet;
   private subscriptions: Subscription[] = [];
   public cservices: CService[];
+  @Output() showCService: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private chargingDataService: ChargingDataService) {}
 
@@ -28,6 +29,10 @@ export class SubscriptionsComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.chargingDataService.getSubscriptionsByWallet(wallet.id).subscribe( services => {
       this.cservices = services;
     }));
+  }
+
+  public select(cservice: CService): void {
+    this.showCService.emit(cservice);
   }
 
   ngOnDestroy(): void {

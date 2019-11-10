@@ -1,5 +1,6 @@
 package com.netcracker.edu.fapi.controller;
 
+import com.netcracker.edu.fapi.models.RegistrationViewModel;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.models.UserViewModel;
 import com.netcracker.edu.fapi.service.UserService;
@@ -33,8 +34,15 @@ public class UserController {
     }
 
     @PostMapping
+    public void saveUser(@RequestBody RegistrationViewModel model) {
+        userService.save(model);
+    }
+
+    /*
+    @PostMapping
     public User saveUser(@RequestBody User user) {
         return userService.save(user);
     }
+    */
 
 }
