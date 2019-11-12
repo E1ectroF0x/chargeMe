@@ -7,6 +7,7 @@ import java.util.List;
 public interface CServiceService {
 
     List<CService> getAllCServices();
+    CService getById(Long cservice_id);
     CService saveCService(CService cService);
     void deleteCService(Long id);
     List<CService> getMoreAve();

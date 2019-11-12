@@ -14,7 +14,7 @@ export class CardDetailsComponent {
   @Output() delete: EventEmitter<any> = new EventEmitter();
   @Output() subscribe: EventEmitter<any> = new EventEmitter();
 
-  constructor(private cserviceService: CServiceService) {}
+  constructor() {}
 
   private onDelete(cservice: CService): void {
     this.delete.emit(cservice);

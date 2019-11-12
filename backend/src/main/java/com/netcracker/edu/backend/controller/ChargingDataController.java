@@ -28,6 +28,7 @@ public class ChargingDataController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ChargingData saveSubscription(@RequestBody ChargingDataViewModel model) {
+        chargingDataService.chargeWallets();
         return chargingDataService.saveSubscription(model);
     }
 
@@ -35,5 +36,4 @@ public class ChargingDataController {
     public void deleteSubscription(@PathVariable Long id) {
         chargingDataService.deleteSubscription(id);
     }
-
 }

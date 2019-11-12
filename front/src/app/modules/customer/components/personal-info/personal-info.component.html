@@ -30,4 +30,4 @@
 
 </div>
 
-<app-customer-personal-sub-info [cservice]="showSub" ></app-customer-personal-sub-info>
+<app-customer-personal-sub-info [cservice]="showSub" (unsubscribeEvent)="unsubscribe($event)"></app-customer-personal-sub-info>

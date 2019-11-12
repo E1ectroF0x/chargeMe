@@ -5,6 +5,7 @@ import {Wallet} from '../../models/wallet';
 import {User} from '../../models/user';
 import {UsersService} from '../../../../services/users.service';
 import {CService} from '../../../cservice/models/c-service';
+import {ChargingDataService} from '../../../../services/charging-data.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   public showSub: CService;
 
   constructor(private customerService: CustomerService,
-              private usersService: UsersService) {}
+              private usersService: UsersService,
+              private chargingDataService: ChargingDataService) {}
 
   ngOnInit(): void {
     this.loadWallets();
@@ -56,6 +58,9 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-
+  @Input()
+  public unsubscribe(cservice: CService): void {
+    this.subscriptions.push(this.chargingDataService.unsubscribe(cservice.id).subscribe());
+  }
 
 }

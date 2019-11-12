@@ -7,6 +7,8 @@ import java.util.List;
 public interface WalletService {
     List<Wallet> getWalletsByCustomer(Long customer_id);
     List<Wallet> getAllWallets();
+    Wallet getById(Long wallet_id);
     Wallet saveWallet(Wallet wallet, Long customer_id);
     void deleteWallet(Long id);
+    void charge(Long wallet_id, Double amount);
 }

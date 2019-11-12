@@ -17,6 +17,7 @@
   font-family: "Segoe UI", serif;
   margin-top: 150px;
   margin-left: 50px;
+  min-width: 300px;
 }
 
 .content-personal {

@@ -3,7 +3,7 @@
   <div class="popup">
     <div class="popup-content">
 
-      <form method="post" class="popup-content-details">
+      <form method="post" class="popup-content-details" enctype="multipart/form-data" >
         <div class="ml-2 mt-2 mr-2">
           <div class="form-group">
             <label for="serviceName">
@@ -22,6 +22,9 @@
               Genre:
             </label>
             <input id="serviceGenre" placeholder="Genre" class="form-control" name="genre" [(ngModel)]="cservice.genre">
+          </div>
+          <div class="form-group">
+            <p><input type="file" name="logo" multiple accept="image/png"></p>
           </div>
           <div class="row justify-content-between">
             <button type="submit" class="btn btn-warning mb-1 ml-3" (click)="onPost(cservice)">POST</button>

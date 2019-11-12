@@ -30,6 +30,11 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
+    public Wallet getById(Long wallet_id) {
+        return walletRepository.findById(wallet_id).orElse(null);
+    }
+
+    @Override
     public Wallet saveWallet(Wallet wallet, Long customer_id) {
         Customer customer = customerRepository.findById(customer_id).orElse(null);
         wallet.setCustomer_id(customer);
@@ -41,4 +46,10 @@ public class WalletServiceImpl implements WalletService {
         walletRepository.deleteById(id);
     }
 
+    @Override
+    public void charge(Long wallet_id, Double amount) {
+        Wallet wallet = walletRepository.findById(wallet_id).orElse(null);
+        wallet.setAmount(wallet.getAmount() - amount);
+        walletRepository.save(wallet);
+    }
 }

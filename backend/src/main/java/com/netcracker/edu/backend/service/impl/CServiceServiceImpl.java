@@ -20,6 +20,11 @@ public class CServiceServiceImpl implements CServiceService {
     }
 
     @Override
+    public CService getById(Long cservice_id) {
+        return cServiceRepository.findById(cservice_id).orElse(null);
+    }
+
+    @Override
     public CService saveCService(CService cService) {
         return cServiceRepository.save(cService);
     }

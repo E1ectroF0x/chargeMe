@@ -11,4 +11,5 @@ public interface ChargingDataService {
     List<CService> getAllByWallet(Long wallet_id);
     ChargingData saveSubscription(ChargingDataViewModel model);
     void deleteSubscription(Long id);
+    void chargeWallets();
 }

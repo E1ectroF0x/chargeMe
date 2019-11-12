@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CService} from '../../../../cservice/models/c-service';
 
 
@@ -10,10 +10,15 @@ import {CService} from '../../../../cservice/models/c-service';
 export class SubscriptionInfoComponent implements OnInit {
 
   @Input() public cservice: CService;
+  @Output() public unsubscribeEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit(): void {
+  }
+
+  public unsubscribeEmit(cservice: CService): void {
+    this.unsubscribeEvent.emit(cservice);
   }
 
 }

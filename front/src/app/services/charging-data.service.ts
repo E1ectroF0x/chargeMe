@@ -20,4 +20,8 @@ export class ChargingDataService {
     return this.http.post<any>('/api/subscriptions/', model);
   }
 
+  unsubscribe(subscriptionId: string): Observable<void> {
+    return this.http.delete<any>('/api/subscriptions/del/' + subscriptionId);
+  }
+
 }
