@@ -14,8 +14,8 @@ export class UsersService {
     return this.http.get<User[]>('/api/users/all');
   }
 
-  postUser(model: RegistrationModel): Observable<void> {
-    return this.http.post<void>('/api/users', model);
+  postUser(model: RegistrationModel): Observable<any> {
+    return this.http.post<any>('/api/users', model);
   }
 
 }

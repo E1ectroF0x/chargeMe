@@ -29,4 +29,7 @@ public class WalletController {
         return walletService.save(wallet);
     }
 
+    @PostMapping(value = "/{id}")
+    public void refillWallet(@PathVariable Long id, @RequestBody String amount) { walletService.refill(id, amount); }
+
 }

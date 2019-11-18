@@ -5,6 +5,7 @@ import {CServiceService} from '../../../../../services/c-service.service';
 import {CService} from '../../../../cservice/models/c-service';
 import {Subscription} from 'rxjs';
 import {ChargingDataService} from '../../../../../services/charging-data.service';
+import {SubscriptionModel} from '../../../models/subscription-model';
 
 
 @Component ({
@@ -12,31 +13,15 @@ import {ChargingDataService} from '../../../../../services/charging-data.service
   templateUrl: './subscriptions.component.html',
   styleUrls: ['./subscriptions.component.css']
 })
-export class SubscriptionsComponent implements OnInit, OnDestroy {
+export class SubscriptionsComponent {
 
-  @Input() wallet: Wallet;
-  private subscriptions: Subscription[] = [];
-  public cservices: CService[];
+  @Input() cservices: SubscriptionModel[];
   @Output() showCService: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private chargingDataService: ChargingDataService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.loadCServices(this.wallet);
-  }
-
-  private loadCServices(wallet: Wallet): void {
-    this.subscriptions.push(this.chargingDataService.getSubscriptionsByWallet(wallet.id).subscribe( services => {
-      this.cservices = services;
-    }));
-  }
-
-  public select(cservice: CService): void {
-    this.showCService.emit(cservice);
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  public select(model: SubscriptionModel): void {
+    this.showCService.emit(model);
   }
 
 }

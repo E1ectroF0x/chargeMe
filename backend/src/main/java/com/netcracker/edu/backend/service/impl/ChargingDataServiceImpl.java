@@ -5,6 +5,7 @@ import com.netcracker.edu.backend.entity.ChargingData;
 import com.netcracker.edu.backend.entity.Customer;
 import com.netcracker.edu.backend.entity.Wallet;
 import com.netcracker.edu.backend.models.ChargingDataViewModel;
+import com.netcracker.edu.backend.models.SubscriptionModel;
 import com.netcracker.edu.backend.repository.ChargingDataRepository;
 import com.netcracker.edu.backend.service.CServiceService;
 import com.netcracker.edu.backend.service.ChargingDataService;
@@ -40,12 +41,12 @@ public class ChargingDataServiceImpl implements ChargingDataService {
     }
 
     @Override
-    public List<CService> getAllByWallet(Long wallet_id) {
+    public List<SubscriptionModel> getAllByWallet(Long wallet_id) {
         Wallet wallet = walletService.getById(wallet_id);
         List<ChargingData> subs = chargingDataRepository.findAllByWalletId(wallet);
-        List<CService> cservices = new ArrayList<>();
+        List<SubscriptionModel> cservices = new ArrayList<>();
         for (ChargingData data : subs) {
-            cservices.add(data.getServiceId());
+            cservices.add(new SubscriptionModel(data.getId(), data.getServiceId()));
         }
         return cservices;
     }
@@ -64,8 +65,6 @@ public class ChargingDataServiceImpl implements ChargingDataService {
 
     @Override
     public void deleteSubscription(Long id) {
-
-
         chargingDataRepository.deleteById(id);
     }
 

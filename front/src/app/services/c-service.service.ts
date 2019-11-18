@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {CService} from '../modules/cservice/models/c-service';
-import {Wallet} from '../modules/customer/models/wallet';
 
 
 @Injectable()
@@ -16,6 +15,7 @@ export class CServiceService {
   }
 
   saveCService(cservice: CService): Observable<CService> {
+
     return this.http.post<CService>('/api/services', cservice);
   }
 

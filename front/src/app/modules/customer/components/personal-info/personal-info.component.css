@@ -38,10 +38,14 @@
 }
 
 .wallet:hover {
-  background-color: rgba(20, 255, 99, .4);
+  background-color: rgba(20, 255, 99, .8);
 }
 
 .info {
   margin-left: 10px;
   margin-top: 40px;
+}
+
+.selected {
+  background-color: rgba(20, 255, 99, .8);
 }

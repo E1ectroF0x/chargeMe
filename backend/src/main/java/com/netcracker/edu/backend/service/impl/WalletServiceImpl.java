@@ -52,4 +52,11 @@ public class WalletServiceImpl implements WalletService {
         wallet.setAmount(wallet.getAmount() - amount);
         walletRepository.save(wallet);
     }
+
+    @Override
+    public void refill(Long wallet_id, String amount) {
+        Wallet wallet = walletRepository.findById(wallet_id).orElse(null);
+        wallet.setAmount(wallet.getAmount() + Double.parseDouble(amount));
+        walletRepository.save(wallet);
+    }
 }
