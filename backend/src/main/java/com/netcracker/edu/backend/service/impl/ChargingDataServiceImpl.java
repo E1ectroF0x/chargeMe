@@ -73,7 +73,7 @@ public class ChargingDataServiceImpl implements ChargingDataService {
     public void chargeWallets() {
         List<ChargingData> subscriptions = (List<ChargingData>) chargingDataRepository.findAll();
         for (ChargingData sub : subscriptions) {
-            if (sub.getWalletId().getAmount() <= 0.0) {
+            if (sub.getWalletId().getAmount() - sub.getServiceId().getCost() <= 0.0) {
                 continue;
             }
             walletService.charge(sub.getWalletId().getId(), sub.getServiceId().getCost());
