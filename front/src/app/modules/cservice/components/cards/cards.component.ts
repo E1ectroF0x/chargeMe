@@ -4,6 +4,9 @@ import {CService} from '../../models/c-service';
 import {Subscription} from 'rxjs';
 import {ChargingDataService} from '../../../../services/charging-data.service';
 import {ChargingDataViewModel} from '../../models/ChargingDataViewModel';
+import {Wallet} from '../../../customer/models/wallet';
+import {WalletService} from '../../../../services/wallet.service';
+import {CustomerService} from '../../../../services/customer.service';
 
 
 @Component({
@@ -13,30 +16,38 @@ import {ChargingDataViewModel} from '../../models/ChargingDataViewModel';
 })
 export class CardsComponent implements OnInit, OnDestroy {
 
+
+  public wallets: Wallet[];
   public cservices: CService[];
   public subscriptions: Subscription[] = [];
   public isSelected: CService;
   @Input() public isPost;
 
   constructor(private cserviceService: CServiceService,
-              private chargingDataService: ChargingDataService) {}
+              private chargingDataService: ChargingDataService,
+              private customerService: CustomerService) {}
 
   ngOnInit(): void {
     this.loadCServices();
+    this.loadWallets();
     this.isSelected = null;
     this.isPost = false;
   }
 
-  @Input()
+  public loadWallets(): void {
+    this.subscriptions.push(this.customerService.getWalletsByCustomerId().subscribe(wallets => {
+      this.wallets = wallets;
+    }));
+  }
+
   private delete(cservice: CService): void {
     this.subscriptions.push(this.cserviceService.deleteCService(cservice.id).subscribe( () => {
       this._updateCServices();
     }));
   }
 
-  @Input()
-  private subscribe(cservice: CService): void {
-    this.subscriptions.push(this.chargingDataService.subscribe(new ChargingDataViewModel(cservice.id, '1', '6')).subscribe(() => {
+  private subscribe(obj: any): void {
+    this.subscriptions.push(this.chargingDataService.subscribe(new ChargingDataViewModel(obj.cservicer.id, '1', obj.activeWallet.id)).subscribe(() => {
       this._updateCServices();
     }));
   }
@@ -51,7 +62,6 @@ export class CardsComponent implements OnInit, OnDestroy {
     }));
   }
 
-  @Input()
   private postCService(cservice: CService): void {
     this.subscriptions.push(this.cserviceService.saveCService(cservice).subscribe(() =>
       this._updateCServices()));

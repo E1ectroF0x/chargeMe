@@ -1,6 +1,6 @@
 <div *ngIf="cservice">
 
-  <div class="popup" (click)="cservice=null">
+  <div class="popup">
 
       <div class="popup-content">
 
@@ -11,8 +11,16 @@
             <h5>Genre: {{cservice.genre}}</h5>
             <h5>Cost: <span class="cost-span">{{cservice.cost}}$</span>/mo</h5>
             <div class="d-flex justify-content-between">
-              <button class="btn btn-warning" (click)="onSubscribe(cservice)">Subscribe</button>
-              <button class="btn btn-primary mr-1" (click)="onDelete(cservice)">Delete</button>
+              <div>
+                <button class="btn btn-warning mt-1" (click)="onSubscribe(cservice)">Subscribe</button>
+                <select class="ml-2 mt-1" name="wallets" [(ngModel)]="_activeWallet">
+                  <option *ngFor="let wallet of wallets" [ngValue]="wallet">{{wallet.id}} - {{wallet.amount}}$</option>
+                </select>
+              </div>
+              <div>
+                <button class="btn btn-primary mr-1 mt-1" (click)="onDelete(cservice)">Delete</button>
+                <button class="btn btn-primary mr-1 mt-1" (click)="onClose()">Close window</button>
+              </div>
             </div>
           </div>
 
