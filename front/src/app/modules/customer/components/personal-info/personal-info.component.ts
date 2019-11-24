@@ -71,7 +71,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }
 
   public refillWallet(amount: string): void {
-    this.subscriptions.push(this.walletService.refillWallet('6', amount).subscribe( () => this.updateWallets() ));
+    this.subscriptions.push(this.walletService.refillWallet(this.selectedWallet.id, amount).subscribe( () => this.updateWallets() ));
   }
 
   @Input()
