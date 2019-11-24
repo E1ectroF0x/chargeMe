@@ -7,6 +7,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {CardDetailsComponent} from './components/cards/details/card-details.component';
 import {FormsModule} from '@angular/forms';
 import {PostFormComponent} from './components/cards/post-form/post-form.component';
+import {CloudinaryModule} from '@cloudinary/angular-5.x';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {PostFormComponent} from './components/cards/post-form/post-form.componen
     HttpClientModule,
     RouterModule,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    CloudinaryModule
   ],
   providers: [CServiceService],
   exports: [

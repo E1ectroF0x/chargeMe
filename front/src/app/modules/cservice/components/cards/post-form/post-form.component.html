@@ -24,7 +24,7 @@
             <input id="serviceGenre" placeholder="Genre" class="form-control" name="genre" [(ngModel)]="cservice.genre">
           </div>
           <div class="form-group">
-            <p><input type="file" name="logo" multiple accept="image/png"></p>
+            <p><input type="file" name="logo" multiple accept="image/png" (change)="onFileChange($event)"></p>
           </div>
           <div class="row justify-content-between">
             <button type="submit" class="btn btn-warning mb-1 ml-3" (click)="onPost(cservice)">POST</button>

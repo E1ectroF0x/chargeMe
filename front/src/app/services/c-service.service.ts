@@ -14,8 +14,12 @@ export class CServiceService {
     return this.http.get<CService[]>('/api/services/all');
   }
 
-  saveCService(cservice: CService): Observable<CService> {
-
+  saveCService(cservice: CService, image: File): Observable<CService> {
+    const fd = new FormData();
+    fd.append('file', image);
+    fd.append('upload_preset', 'i8cspdmn');
+    fd.append('public_id', cservice.name);
+    this.http.post('https://api.cloudinary.com/v1_1/e1ectrof0x/image/upload', fd).subscribe();
     return this.http.post<CService>('/api/services', cservice);
   }
 

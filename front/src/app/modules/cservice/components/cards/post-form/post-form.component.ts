@@ -12,10 +12,15 @@ export class PostFormComponent {
   @Input() isPost: boolean;
   @Output() post: EventEmitter<any> = new EventEmitter<any>();
   @Output() isPostChange: EventEmitter<any> = new EventEmitter<any>();
+  private uploadImage: File;
 
   private cservice: CService = new CService();
 
   constructor() {}
+
+  public onFileChange(event) {
+    this.uploadImage = event.target.files[0];
+  }
 
   private onClose(): void {
     this.isPostChange.emit();
@@ -23,7 +28,7 @@ export class PostFormComponent {
 
   private onPost(cservice: CService): void {
     this.isPost = false;
-    this.post.emit(cservice);
+    this.post.emit({cservicer: cservice, image: this.uploadImage} );
   }
 
 }

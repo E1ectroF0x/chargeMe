@@ -5,8 +5,8 @@ import {Subscription} from 'rxjs';
 import {ChargingDataService} from '../../../../services/charging-data.service';
 import {ChargingDataViewModel} from '../../models/ChargingDataViewModel';
 import {Wallet} from '../../../customer/models/wallet';
-import {WalletService} from '../../../../services/wallet.service';
 import {CustomerService} from '../../../../services/customer.service';
+import { Cloudinary } from '@cloudinary/angular-5.x';
 
 
 @Component({
@@ -25,7 +25,8 @@ export class CardsComponent implements OnInit, OnDestroy {
 
   constructor(private cserviceService: CServiceService,
               private chargingDataService: ChargingDataService,
-              private customerService: CustomerService) {}
+              private customerService: CustomerService,
+              private cloudinary: Cloudinary) {}
 
   ngOnInit(): void {
     this.loadCServices();
@@ -62,8 +63,8 @@ export class CardsComponent implements OnInit, OnDestroy {
     }));
   }
 
-  private postCService(cservice: CService): void {
-    this.subscriptions.push(this.cserviceService.saveCService(cservice).subscribe(() =>
+  private postCService(model: {cservicer: CService, image: File}): void {
+    this.subscriptions.push(this.cserviceService.saveCService(model.cservicer, model.image).subscribe(() =>
       this._updateCServices()));
   }
 

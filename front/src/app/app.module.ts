@@ -8,7 +8,8 @@ import {LayoutModule} from './modules/layout/layout.module';
 import {LoginComponent} from './modules/layout/components/login/login.component';
 import {RegistrationComponent} from './modules/layout/components/registration/registration.component';
 import {AccountComponent} from './modules/layout/components/account/account.component';
-
+import {CloudinaryModule} from '@cloudinary/angular-5.x';
+import * as  Cloudinary from 'cloudinary-core';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,6 +25,10 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     LayoutModule,
+    CloudinaryModule.forRoot(Cloudinary,
+      {cloud_name: 'e1ectrof0x',
+      api_key: '915422567263438',
+      api_secret: 'Qx7fJL77Vn7-7hppnAAmBDQv3_0'}),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
