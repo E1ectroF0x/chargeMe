@@ -1,7 +1,7 @@
 <div class="row main">
   <div class="col cards" *ngFor="let cservice of cservices" (click)="select(cservice)" >
     <div class="card-top">
-      <img src="/assets/images/{{cservice.cservice.id}}.png" alt="Logo" class="round">
+      <img src="http://res.cloudinary.com/e1ectrof0x/image/upload/{{cservice.cservice.name}}" alt="Logo" class="round">
     </div>
   </div>
 </div>
