@@ -8,6 +8,7 @@ import {CService} from '../../../cservice/models/c-service';
 import {ChargingDataService} from '../../../../services/charging-data.service';
 import {WalletService} from '../../../../services/wallet.service';
 import {SubscriptionModel} from '../../models/subscription-model';
+import {StorageService} from '../../../../services/storage.service';
 
 
 @Component({
@@ -29,16 +30,18 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   constructor(private customerService: CustomerService,
               private usersService: UsersService,
               private chargingDataService: ChargingDataService,
-              private walletService: WalletService) {}
+              private walletService: WalletService,
+              private storageService: StorageService) {}
 
   ngOnInit(): void {
     this.loadWallets();
     this.showUsers = false;
     this.showSub = null;
+    console.log(this.storageService.getCurrentUser().login);
   }
 
   private loadWallets(): void {
-    this.subscriptions.push(this.customerService.getWalletsByCustomerId().subscribe( wallets => {
+    this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().id).subscribe( wallets => {
       this.wallets = wallets;
     }));
   }

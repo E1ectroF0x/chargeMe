@@ -9,6 +9,7 @@ import {AccountComponent} from './components/account/account.component';
 import {CustomerModule} from '../customer/customer.module';
 import {UsersService} from '../../services/users.service';
 import {FormsModule} from '@angular/forms';
+import {StorageService} from '../../services/storage.service';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   providers: [
-    UsersService
+    UsersService,
+    StorageService
   ],
   exports: [HomeComponent, LoginComponent, RegistrationComponent, AccountComponent]
 })

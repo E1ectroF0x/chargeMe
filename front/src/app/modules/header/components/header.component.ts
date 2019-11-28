@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {StorageService} from '../../../services/storage.service';
 
 
 @Component({
@@ -8,7 +9,19 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() {}
+  public isAuthorized = false;
 
-  ngOnInit(): void {}
+  constructor(private storageService: StorageService) {}
+
+  ngOnInit(): void {
+    if (this.storageService.getCurrentUser()) {
+      this.isAuthorized = true;
+    }
+  }
+
+  public logout(): void {
+    this.storageService.clearToken();
+    this.storageService.setCurrentUser(null);
+  }
+
 }

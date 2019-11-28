@@ -9,6 +9,7 @@ import {UsersComponent} from './components/personal-info/users/users.component';
 import {UsersService} from '../../services/users.service';
 import {SubscriptionInfoComponent} from './components/personal-info/subscription-info/subscription-info.component';
 import {WalletService} from '../../services/wallet.service';
+import {StorageService} from '../../services/storage.service';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {WalletService} from '../../services/wallet.service';
     CustomerService,
     ChargingDataService,
     UsersService,
-    WalletService
+    WalletService,
+    StorageService
   ],
   exports: [
     PersonalInfoComponent,

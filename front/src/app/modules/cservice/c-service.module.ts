@@ -8,6 +8,7 @@ import {CardDetailsComponent} from './components/cards/details/card-details.comp
 import {FormsModule} from '@angular/forms';
 import {PostFormComponent} from './components/cards/post-form/post-form.component';
 import {CloudinaryModule} from '@cloudinary/angular-5.x';
+import {StorageService} from '../../services/storage.service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import {CloudinaryModule} from '@cloudinary/angular-5.x';
     FormsModule,
     CloudinaryModule
   ],
-  providers: [CServiceService],
+  providers: [CServiceService, StorageService],
   exports: [
     CardsComponent,
     CardDetailsComponent,

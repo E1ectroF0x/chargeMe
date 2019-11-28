@@ -13,10 +13,14 @@ export class RegistrationComponent implements OnDestroy {
 
   private subscriptions: Subscription[] = [];
   public model: RegistrationModel = new RegistrationModel();
+  public userAlreadyExists: string;
+
   constructor(private usersService: UsersService) {}
 
   public registerUser(model: RegistrationModel): void {
-    this.subscriptions.push(this.usersService.postUser(model).subscribe());
+    this.subscriptions.push(this.usersService.postUser(model).subscribe(res => {
+      console.log(res);
+    }));
   }
 
   ngOnDestroy(): void {

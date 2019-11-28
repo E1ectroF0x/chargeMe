@@ -9,8 +9,8 @@ export class CustomerService {
 
   constructor(private http: HttpClient) {}
 
-  getWalletsByCustomerId(): Observable<Wallet[]> {
-    return this.http.get<Wallet[]>('/api/wallets/' + '1');
+  getWalletsByCustomerId(id: string): Observable<Wallet[]> {
+    return this.http.get<Wallet[]>('/api/wallets/' + id);
   }
 
 }

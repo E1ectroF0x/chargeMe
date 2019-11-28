@@ -40,10 +40,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public void save(RegistrationViewModel model) {
+    public boolean save(RegistrationViewModel model) {
+        if (this.getUserByLogin(model.getLogin()) != null) {
+            return false;
+        }
         model.setPassword(bCryptPasswordEncoder.encode(model.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.postForEntity(backendServerUrl + "/api/users", model, User.class);
+        return true;
     }
 
     @Override

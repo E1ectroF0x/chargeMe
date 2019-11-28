@@ -12,6 +12,6 @@ public interface UserService {
     List<UserViewModel> getAll();
     //List<User> getAll();
     //User save(User user);
-    void save(RegistrationViewModel model);
+    boolean save(RegistrationViewModel model);
 
 }

@@ -7,6 +7,7 @@ import {ChargingDataViewModel} from '../../models/ChargingDataViewModel';
 import {Wallet} from '../../../customer/models/wallet';
 import {CustomerService} from '../../../../services/customer.service';
 import { Cloudinary } from '@cloudinary/angular-5.x';
+import {StorageService} from '../../../../services/storage.service';
 
 
 @Component({
@@ -15,7 +16,6 @@ import { Cloudinary } from '@cloudinary/angular-5.x';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit, OnDestroy {
-
 
   public wallets: Wallet[];
   public cservices: CService[];
@@ -26,7 +26,8 @@ export class CardsComponent implements OnInit, OnDestroy {
   constructor(private cserviceService: CServiceService,
               private chargingDataService: ChargingDataService,
               private customerService: CustomerService,
-              private cloudinary: Cloudinary) {}
+              private cloudinary: Cloudinary,
+              private storageService: StorageService) {}
 
   ngOnInit(): void {
     this.loadCServices();
@@ -36,12 +37,13 @@ export class CardsComponent implements OnInit, OnDestroy {
   }
 
   public loadWallets(): void {
-    this.subscriptions.push(this.customerService.getWalletsByCustomerId().subscribe(wallets => {
+    this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().id).subscribe(wallets => {
       this.wallets = wallets;
     }));
   }
 
   private delete(cservice: CService): void {
+
     this.subscriptions.push(this.cserviceService.deleteCService(cservice.id).subscribe( () => {
       this._updateCServices();
     }));

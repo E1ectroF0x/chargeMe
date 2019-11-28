@@ -10,6 +10,8 @@ import {RegistrationComponent} from './modules/layout/components/registration/re
 import {AccountComponent} from './modules/layout/components/account/account.component';
 import {CloudinaryModule} from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
+import {APIInterceptor} from './interceptors/api-interceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -31,7 +33,11 @@ const appRoutes: Routes = [
       api_secret: 'Qx7fJL77Vn7-7hppnAAmBDQv3_0'}),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [APIInterceptor, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: APIInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
