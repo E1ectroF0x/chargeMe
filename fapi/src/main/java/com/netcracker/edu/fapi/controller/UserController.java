@@ -5,6 +5,7 @@ import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.models.UserViewModel;
 import com.netcracker.edu.fapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /*
-    @GetMapping(value = "/all")
-    public List<User> getAll() {
-        return userService.getAll();
-    }
-    */
-
+    @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/all")
     public List<UserViewModel> getAll() {
         return userService.getAll();
@@ -35,14 +30,8 @@ public class UserController {
 
     @PostMapping
     public void saveUser(@RequestBody RegistrationViewModel model) {
-        userService.save(model);
+            userService.save(model);
     }
 
-    /*
-    @PostMapping
-    public User saveUser(@RequestBody User user) {
-        return userService.save(user);
-    }
-    */
 
 }

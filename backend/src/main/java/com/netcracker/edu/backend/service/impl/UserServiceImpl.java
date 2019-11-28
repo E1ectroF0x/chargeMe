@@ -44,6 +44,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getByLogin(String login) {
+        return userRepository.findByLogin(login);
+    }
+
+    @Override
     public User saveUser(RegistrationViewModel model) {
         Customer customer = new Customer();
         customer.setEmail(model.getEmail());

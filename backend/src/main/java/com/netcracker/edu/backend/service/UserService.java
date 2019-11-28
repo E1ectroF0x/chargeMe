@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface UserService {
     List<UserViewModel> getAll();
+    User getByLogin(String login);
     //List<User> getAllUsers();
     User saveUser(RegistrationViewModel model);
     //User saveUser(User user);

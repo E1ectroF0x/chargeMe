@@ -24,6 +24,11 @@ public class UserController {
         return userService.saveUser(model);
     }
 
+    @RequestMapping(value = "/{login}", method = RequestMethod.GET)
+    public User getUser(@PathVariable String login) {
+        return userService.getByLogin(login);
+    }
+
     /*
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> getAll() {
