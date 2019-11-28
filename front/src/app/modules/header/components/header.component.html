@@ -3,14 +3,14 @@
     <span class="navbar-brand mb-0 h1">ChargeMe</span>
   </a>
   <div>
-    <a routerLink="/account">
+    <a routerLink="/account" *ngIf="this.isAuthorized">
       <button class="btn btn-primary mr-2 acc-btn">Account</button>
     </a>
     <a routerLink="/login" *ngIf="!this.isAuthorized">
       <button class="btn btn-warning login-btn">Login</button>
     </a>
     <a routerLink="/login" *ngIf="this.isAuthorized" >
-      <button class="btn btn-warning logout-btn" (click)="logout()">Logout</button>
+      <button class="btn btn-warning logout-btn" (click)="logout()">Sign out</button>
     </a>
   </div>
 </nav>
