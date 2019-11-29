@@ -16,10 +16,6 @@ export class UsersService {
     return this.http.get<User[]>('/api/users/all');
   }
 
-  postUser(model: RegistrationModel): Observable<any> {
-    return this.http.post<any>('/api/users', model);
-  }
-
   generateToken(model: LoginModel): Observable<AuthToken> {
     return this.http.post<AuthToken>('/api/token/generate-token', model);
   }

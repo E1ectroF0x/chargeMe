@@ -3,6 +3,7 @@ import {LoginModel} from './models/login-model';
 import {StorageService} from '../../../../services/storage.service';
 import {AuthToken, UsersService} from '../../../../services/users.service';
 import {User} from '../../../customer/models/user';
+import {Router} from '@angular/router';
 
 
 @Component ({
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   public showCheckYourSetDataAlert = false;
 
   constructor(private storageService: StorageService,
-              private usersService: UsersService) {
+              private usersService: UsersService,
+              public router: Router) {
   }
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
         this.usersService.getAuthorizedUser()
           .subscribe((userModel: User) => {
             this.storageService.setCurrentUser(userModel);
+            this.router.navigateByUrl('');
           });
       }
     }, (error) => {

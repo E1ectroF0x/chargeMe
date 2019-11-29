@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
             for (Wallet wallet : wallets) {
                 walletAmount += wallet.getAmount();
             }
-            UserViewModel model = new UserViewModel(user.getId().toString(), user.getLogin(), user.getCustomer().getEmail(), walletAmount.toString());
+            UserViewModel model = new UserViewModel(user.getId().toString(), user.getLogin(), user.getCustomer().getEmail(), walletAmount.toString(), user.getRole());
             models.add(model);
         }
         return models;

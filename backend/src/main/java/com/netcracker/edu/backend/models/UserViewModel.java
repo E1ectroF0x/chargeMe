@@ -6,14 +6,16 @@ public class UserViewModel {
     private String username;
     private String email;
     private String totalMoney;
+    private String ROLE;
 
     public UserViewModel() {}
 
-    public UserViewModel(String id, String username, String email, String totalMoney) {
+    public UserViewModel(String id, String username, String email, String totalMoney, String ROLE) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.totalMoney = totalMoney;
+        this.ROLE = ROLE;
     }
 
     public String getId() { return id; }
@@ -31,4 +33,8 @@ public class UserViewModel {
     public String getTotalMoney() { return totalMoney; }
 
     public void setTotalMoney(String totalMoney) { this.totalMoney = totalMoney; }
+
+    public String getROLE() { return ROLE; }
+
+    public void setROLE(String ROLE) { this.ROLE = ROLE; }
 }

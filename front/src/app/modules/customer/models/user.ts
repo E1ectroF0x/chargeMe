@@ -3,4 +3,5 @@ export class User {
   login: string;
   email: string;
   totalMoney: string;
+  role: string;
 }

@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/all")
     public List<UserViewModel> getAll() {
         return userService.getAll();
@@ -30,14 +30,9 @@ public class UserController {
         return userService.getUserByLogin(login);
     }
 
-    @PostMapping
-    public String saveUser(@RequestBody RegistrationViewModel model) {
-        if (!userService.save(model)) {
-            return "OK";
-        }
-        else {
-            return "UsernameAlreadyExistsException";
-        }
+    @PostMapping(value = "/register")
+    public void saveUser(@RequestBody RegistrationViewModel model) {
+        userService.save(model);
     }
 
     @GetMapping("/current")
