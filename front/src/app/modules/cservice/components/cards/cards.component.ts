@@ -37,7 +37,7 @@ export class CardsComponent implements OnInit, OnDestroy {
   }
 
   public loadWallets(): void {
-    this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().id).subscribe(wallets => {
+    this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().customer.id).subscribe(wallets => {
       this.wallets = wallets;
     }));
   }
@@ -50,7 +50,7 @@ export class CardsComponent implements OnInit, OnDestroy {
   }
 
   private subscribe(obj: any): void {
-    this.subscriptions.push(this.chargingDataService.subscribe(new ChargingDataViewModel(obj.cservicer.id, '1', obj.activeWallet.id)).subscribe(() => {
+    this.subscriptions.push(this.chargingDataService.subscribe(new ChargingDataViewModel(obj.cservicer.id, this.storageService.getCurrentUser().customer.id, obj.activeWallet.id)).subscribe(() => {
       this._updateCServices();
     }));
   }

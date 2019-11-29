@@ -35,10 +35,12 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public Wallet saveWallet(Wallet wallet, Long customer_id) {
+    public void saveWallet(Long customer_id) {
         Customer customer = customerRepository.findById(customer_id).orElse(null);
+        Wallet wallet = new Wallet();
         wallet.setCustomer_id(customer);
-        return walletRepository.save(wallet);
+        wallet.setAmount(0.0);
+        walletRepository.save(wallet);
     }
 
     @Override

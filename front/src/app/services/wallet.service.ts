@@ -12,4 +12,8 @@ export class WalletService {
     return this.http.post<any>('/api/wallets/' + walletId, amount);
   }
 
+  saveWallet(customerId: string): Observable<void> {
+    return this.http.post<void>('/api/wallets', customerId);
+  }
+
 }

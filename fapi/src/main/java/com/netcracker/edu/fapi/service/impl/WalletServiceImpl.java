@@ -31,9 +31,9 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public Wallet save(Wallet wallet) {
+    public void save(Long customer_id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/wallets", wallet, Wallet.class).getBody();
+        restTemplate.postForEntity(backendServerUrl + "/api/wallets", customer_id, Long.class).getBody();
     }
 
     @Override

@@ -8,6 +8,6 @@ public interface WalletService {
 
     List<Wallet> getWalletsByCustomer(Long customer_id);
     List<Wallet> getAll();
-    Wallet save(Wallet wallet);
+    void save(Long customer_id);
     void refill(Long wallet_id, String amount);
 }

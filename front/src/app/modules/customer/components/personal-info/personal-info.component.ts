@@ -41,7 +41,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }
 
   private loadWallets(): void {
-    this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().id).subscribe( wallets => {
+    this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().customer.id).subscribe( wallets => {
       this.wallets = wallets;
     }));
   }
@@ -49,6 +49,12 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   private updateWallets(): void {
       setInterval ( () => {
       this.loadWallets(); }, 1000);
+  }
+
+  public addWallet(): void {
+    this.subscriptions.push(this.walletService.saveWallet(this.storageService.getCurrentUser().customer.id).subscribe( res => {
+      this.loadWallets();
+    }));
   }
 
   private updateCServices(): void {

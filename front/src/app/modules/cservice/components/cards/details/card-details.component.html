@@ -13,12 +13,12 @@
             <div class="d-flex justify-content-between">
               <div>
                 <button class="btn btn-warning mt-1" (click)="onSubscribe(cservice)">Subscribe</button>
-                <select class="ml-2 mt-1" name="wallets" [(ngModel)]="_activeWallet">
+                <select class="ml-2 mt-1" name="wallets" [(ngModel)]="_activeWallet" *ngIf="wallets.length > 0">
                   <option *ngFor="let wallet of wallets" [ngValue]="wallet">{{wallet.id}} - {{wallet.amount}}$</option>
                 </select>
               </div>
               <div>
-                <button class="btn btn-primary mr-1 mt-1" (click)="onDelete(cservice)">Delete</button>
+                <button class="btn btn-primary mr-1 mt-1" (click)="onDelete(cservice)" *ngIf="authorized.role === 'ADMIN'">Delete</button>
                 <button class="btn btn-primary mr-1 mt-1" (click)="onClose()">Close window</button>
               </div>
             </div>
