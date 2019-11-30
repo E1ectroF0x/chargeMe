@@ -13,5 +13,6 @@ public interface UserService {
     //List<User> getAll();
     //User save(User user);
     boolean save(RegistrationViewModel model);
+    void delete(Long id);
 
 }

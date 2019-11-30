@@ -41,4 +41,10 @@ public class UserController {
         return userService.getUserByLogin(((org.springframework.security.core.userdetails.User) authentication.getPrincipal()).getUsername());
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.delete(id);
+    }
+
 }
