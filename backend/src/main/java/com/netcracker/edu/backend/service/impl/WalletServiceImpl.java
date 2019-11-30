@@ -44,6 +44,12 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
+    public void deleteWalletsByCustomer(Long customer_id) {
+        List<Wallet> wallets = this.getWalletsByCustomer(customer_id);
+        wallets.forEach(wallet -> deleteWallet(wallet.getId()));
+    }
+
+    @Override
     public void deleteWallet(Long id) {
         walletRepository.deleteById(id);
     }

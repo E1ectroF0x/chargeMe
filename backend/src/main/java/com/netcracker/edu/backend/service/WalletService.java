@@ -9,6 +9,7 @@ public interface WalletService {
     List<Wallet> getAllWallets();
     Wallet getById(Long wallet_id);
     void saveWallet(Long customer_id);
+    void deleteWalletsByCustomer(Long customer_id);
     void deleteWallet(Long id);
     void charge(Long wallet_id, Double amount);
     void refill(Long wallet_id, String amount);
