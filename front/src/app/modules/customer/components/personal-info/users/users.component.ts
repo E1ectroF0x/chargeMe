@@ -12,13 +12,19 @@ import {Subscription} from 'rxjs';
 export class UsersComponent implements OnInit {
 
   @Input() public isClicked: boolean;
-  @Input() public users: User[];
+  public users: User[];
   @Output() public showUsersEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {}
+  constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
-    this.showUsersEvent.emit();
+    this.loadUsers();
+  }
+
+  public loadUsers(): void {
+    this.usersService.getAll().subscribe(accounts => {
+      this.users = accounts;
+    });
   }
 
 }

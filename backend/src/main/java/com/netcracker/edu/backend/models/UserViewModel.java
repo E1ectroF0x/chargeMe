@@ -3,16 +3,16 @@ package com.netcracker.edu.backend.models;
 public class UserViewModel {
 
     private String id;
-    private String username;
+    private String login;
     private String email;
     private String totalMoney;
     private String ROLE;
 
     public UserViewModel() {}
 
-    public UserViewModel(String id, String username, String email, String totalMoney, String ROLE) {
+    public UserViewModel(String id, String login, String email, String totalMoney, String ROLE) {
         this.id = id;
-        this.username = username;
+        this.login = login;
         this.email = email;
         this.totalMoney = totalMoney;
         this.ROLE = ROLE;
@@ -22,9 +22,9 @@ public class UserViewModel {
 
     public void setId(String id) { this.id = id; }
 
-    public String getUsername() { return username; }
+    public String getLogin() { return login; }
 
-    public void setUsername(String username) { this.username = username; }
+    public void setLogin(String login) { this.login = login; }
 
     public String getEmail() { return email; }
 

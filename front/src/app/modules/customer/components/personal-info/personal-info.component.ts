@@ -22,7 +22,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public wallets: Wallet[];
   public selectedWallet: Wallet;
-  public users: User[];
   public showSub: SubscriptionModel;
   public refillAmount: string;
   public cservices: SubscriptionModel[];
@@ -67,13 +66,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     }));
   }
 
-  public loadUsers(): void {
-    this.showUsers = !this.showUsers;
-    this.subscriptions.push(this.usersService.getAll().subscribe(accounts => {
-      this.users = accounts;
-    }));
-  }
-
   public chooseWallet(wallet: Wallet): void {
     this.selectedWallet = this.selectedWallet === wallet ? null : wallet;
     this.updateCServices();
@@ -83,7 +75,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.walletService.refillWallet(this.selectedWallet.id, amount).subscribe( () => this.updateWallets() ));
   }
 
-  @Input()
   public showSubDetails(cservice: SubscriptionModel): void {
     this.showSub = cservice === this.showSub ? null : cservice;
   }
@@ -92,7 +83,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  @Input()
   public unsubscribe(model: SubscriptionModel): void {
     this.subscriptions.push(this.chargingDataService.unsubscribe(model.id).subscribe( () => {
       this.updateCServices();

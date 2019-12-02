@@ -27,11 +27,11 @@
         </div>
         <div class="d-flex justify-content-between info">
           <p>*Click wallet to see your subscriptions</p>
-          <button class="btn btn-secondary user-btn" (click)="loadUsers()" *ngIf="this.storageService.getCurrentUser().role === 'ADMIN'">Show users</button>
+          <button class="btn btn-secondary user-btn" *ngIf="this.storageService.getCurrentUser().role === 'ADMIN'" (click)="showUsers = !showUsers" >Show users</button>
         </div>
       </div>
 
-      <app-cusomer-personal-users [isClicked]="showUsers" [users]="users"></app-cusomer-personal-users>
+      <app-cusomer-personal-users [isClicked]="showUsers"></app-cusomer-personal-users>
 
     </div>
 
