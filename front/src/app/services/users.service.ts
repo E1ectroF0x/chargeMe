@@ -24,6 +24,10 @@ export class UsersService {
     return this.http.get<any>('/api/users/current');
   }
 
+  deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>('/api/users/' + id);
+  }
+
 }
 
 export interface AuthToken {

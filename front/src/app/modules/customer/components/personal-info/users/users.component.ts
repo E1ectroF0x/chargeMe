@@ -27,4 +27,14 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  public deleteUsers(): void {
+    for (const user of this.users) {
+      if (user.isDelete) {
+        this.usersService.deleteUser(user.id).subscribe(res => {
+          this.loadUsers();
+        });
+      }
+    }
+  }
+
 }

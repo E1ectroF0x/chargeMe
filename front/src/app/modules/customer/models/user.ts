@@ -7,4 +7,5 @@ export class User {
   totalMoney: string;
   role: string;
   customer: Customer;
+  isDelete = false;
 }
