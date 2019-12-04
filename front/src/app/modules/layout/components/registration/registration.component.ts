@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {RegistrationModel} from './models/registration-model';
 import {AuthService} from '../../../../services/auth.service';
 import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component ({
@@ -13,6 +14,12 @@ import {Router} from '@angular/router';
 })
 export class RegistrationComponent implements OnDestroy {
 
+  registrationForm = new FormGroup({
+    email_: new FormControl('', [Validators.required, Validators.email]),
+    login_: new FormControl('', [Validators.required, Validators.pattern(/[A-z0-9]/)]),
+    pass_: new FormControl('', [Validators.required, Validators.pattern(/[A-z0-9]/)])
+  });
+
   private subscriptions: Subscription[] = [];
   public model: RegistrationModel = new RegistrationModel();
 
@@ -21,9 +28,20 @@ export class RegistrationComponent implements OnDestroy {
               public router: Router) {}
 
   public registerUser(model: RegistrationModel): void {
+    const controls = this.registrationForm.controls;
+    if (this.registrationForm.invalid) {
+      Object.keys(controls).forEach(control => controls[control].markAsTouched());
+      return;
+    }
+
     this.subscriptions.push(this.authService._register(model).subscribe(res => {
       this.router.navigateByUrl('login');
     }));
+  }
+
+  public isFormInvalid(formControl: string): boolean {
+    const control = this.registrationForm.controls[formControl];
+    return control.invalid && control.touched;
   }
 
   ngOnDestroy(): void {

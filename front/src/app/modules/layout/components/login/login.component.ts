@@ -4,6 +4,7 @@ import {StorageService} from '../../../../services/storage.service';
 import {AuthToken, UsersService} from '../../../../services/users.service';
 import {User} from '../../../customer/models/user';
 import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component ({
@@ -12,6 +13,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  loginForm = new FormGroup({
+    login_: new FormControl('', [Validators.required, Validators.pattern(/[A-z0-9]/)]),
+    pass_: new FormControl('', [Validators.required, Validators.pattern(/[A-z0-9]/)])
+  });
 
   public loginModel: LoginModel;
   public showCheckYourSetDataAlert = false;
@@ -25,7 +31,18 @@ export class LoginComponent implements OnInit {
     this.loginModel = new LoginModel();
   }
 
+  public isFormInvalid(formControl: string): boolean {
+    const control = this.loginForm.controls[formControl];
+    return control.invalid && control.touched;
+  }
+
   public onSubmit(): void {
+    const controls = this.loginForm.controls;
+    if (this.loginForm.invalid) {
+      Object.keys(controls).forEach(control => controls[control].markAsTouched());
+      return;
+    }
+
     this.usersService.generateToken(this.loginModel).subscribe((authToken: AuthToken) => {
       if (authToken.token) {
         this.storageService.setToken(authToken.token);

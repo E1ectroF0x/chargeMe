@@ -12,6 +12,7 @@ import {CloudinaryModule} from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
 import {APIInterceptor} from './interceptors/api-interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},

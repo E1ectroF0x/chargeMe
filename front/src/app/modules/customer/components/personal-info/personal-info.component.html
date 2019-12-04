@@ -14,9 +14,12 @@
             </div>
           </div>
           <div class="row wallet-refill ml-4">
-            <form method="post">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Refill amount" name="refillAmount" [(ngModel)]="refillAmount">
+            <form method="post" *ngIf="selectedWallet.id > 0" [formGroup]="form">
+              <div class="form-group" [class.invalid]="isAmountInvalid('amount')">
+                <input type="text" class="form-control" placeholder="Refill amount" name="refillAmount" [(ngModel)]="refillAmount" formControlName="amount">
+                <div *ngIf="isAmountInvalid('amount')">
+                  <span>Amount must be a positive number</span>
+                </div>
               </div>
               <button type="button" class="btn btn-light" (click)="refillWallet(refillAmount)">Refill</button>
             </form>

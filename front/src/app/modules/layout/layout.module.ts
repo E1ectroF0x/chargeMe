@@ -8,9 +8,10 @@ import {RegistrationComponent} from './components/registration/registration.comp
 import {AccountComponent} from './components/account/account.component';
 import {CustomerModule} from '../customer/customer.module';
 import {UsersService} from '../../services/users.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StorageService} from '../../services/storage.service';
 import {AuthService} from '../../services/auth.service';
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({
@@ -25,12 +26,15 @@ import {AuthService} from '../../services/auth.service';
     CServiceModule,
     HeaderModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [
     UsersService,
     StorageService,
-    AuthService
+    AuthService,
+    ReactiveFormsModule
   ],
   exports: [HomeComponent, LoginComponent, RegistrationComponent, AccountComponent]
 })

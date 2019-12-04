@@ -9,6 +9,7 @@ import {ChargingDataService} from '../../../../services/charging-data.service';
 import {WalletService} from '../../../../services/wallet.service';
 import {SubscriptionModel} from '../../models/subscription-model';
 import {StorageService} from '../../../../services/storage.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -17,6 +18,10 @@ import {StorageService} from '../../../../services/storage.service';
   styleUrls: ['./personal-info.component.css']
 })
 export class PersonalInfoComponent implements OnInit, OnDestroy {
+
+  form = new FormGroup({
+    amount: new FormControl('', [Validators.min(0.1), Validators.required, Validators.pattern(/[0-9]/)])
+  });
 
   public showUsers: boolean;
   private subscriptions: Subscription[] = [];
@@ -37,6 +42,11 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     this.showUsers = false;
     this.showSub = null;
     this.selectedWallet = new Wallet();
+  }
+
+  public isAmountInvalid(formControl: string): boolean {
+    const control = this.form.controls[formControl];
+    return control.invalid && control.touched;
   }
 
   private loadWallets(): void {
@@ -78,6 +88,11 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }
 
   public refillWallet(amount: string): void {
+    const controls = this.form.controls;
+    if (this.form.invalid) {
+      Object.keys(controls).forEach(control => controls[control].markAsTouched());
+      return;
+    }
     this.subscriptions.push(this.walletService.refillWallet(this.selectedWallet.id, amount).subscribe( () => this.updateWallets() ));
   }
 
