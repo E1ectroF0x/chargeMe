@@ -40,7 +40,7 @@
 
 .card-add-button button {
   font-family: "Segoe UI", serif;
-  background-color: rgba(0,123,255,.75);
+  background-color: rgb(255, 180, 180);
   height: 120px;
   width: 120px;
   border-radius: 100%;

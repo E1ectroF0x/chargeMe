@@ -8,6 +8,7 @@ import {Wallet} from '../../../customer/models/wallet';
 import {CustomerService} from '../../../../services/customer.service';
 import { Cloudinary } from '@cloudinary/angular-5.x';
 import {StorageService} from '../../../../services/storage.service';
+import {AuthService} from '../../../../services/auth.service';
 
 
 @Component({
@@ -27,11 +28,14 @@ export class CardsComponent implements OnInit, OnDestroy {
               private chargingDataService: ChargingDataService,
               private customerService: CustomerService,
               private cloudinary: Cloudinary,
-              private storageService: StorageService) {}
+              private storageService: StorageService,
+              private authService: AuthService) {}
 
   ngOnInit(): void {
+    if (this.authService.isAuthentificated()) {
+      this.loadWallets();
+    }
     this.loadCServices();
-    this.loadWallets();
     this.isSelected = null;
     this.isPost = false;
   }
@@ -43,7 +47,6 @@ export class CardsComponent implements OnInit, OnDestroy {
   }
 
   private delete(cservice: CService): void {
-
     this.subscriptions.push(this.cserviceService.deleteCService(cservice.id).subscribe( () => {
       this._updateCServices();
     }));

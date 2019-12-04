@@ -4,6 +4,10 @@ import {CServiceService} from '../../../../../services/c-service.service';
 import {Wallet} from '../../../../customer/models/wallet';
 import {StorageService} from '../../../../../services/storage.service';
 import {User} from '../../../../customer/models/user';
+import {WalletService} from '../../../../../services/wallet.service';
+import {CustomerService} from '../../../../../services/customer.service';
+import {AuthService} from '../../../../../services/auth.service';
+import {Router} from '@angular/router';
 
 
 @Component ({
@@ -11,21 +15,32 @@ import {User} from '../../../../customer/models/user';
   templateUrl: './card-details.component.html',
   styleUrls: ['./card-details.component.css']
 })
-export class CardDetailsComponent implements AfterViewInit, OnInit {
+export class CardDetailsComponent implements OnInit {
 
 
   public _activeWallet: Wallet;
-  public authorized: User;
-  @Input() wallets: Wallet[];
+  public _wallets: Wallet[];
   @Input() cservice: CService;
   @Output() delete: EventEmitter<any> = new EventEmitter();
   @Output() subscribe: EventEmitter<any> = new EventEmitter();
   @Output() activateWallet: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private storageService: StorageService) {}
+  constructor(private storageService: StorageService,
+              private customerService: CustomerService,
+              private authService: AuthService,
+              private router: Router) {}
 
   ngOnInit(): void {
-    this.authorized = this.storageService.getCurrentUser();
+    if (this.authService.isAuthentificated()) {
+      this.loadWallets();
+    }
+  }
+
+  private loadWallets(): void {
+   this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().customer.id).subscribe(wallets => {
+      this._wallets = wallets;
+      this._activeWallet = wallets[0];
+    });
   }
 
   public onDelete(cservice: CService): void {
@@ -34,20 +49,24 @@ export class CardDetailsComponent implements AfterViewInit, OnInit {
   }
 
   public onSubscribe(cservice: CService): void {
-    this.subscribe.emit({cservicer: cservice, activeWallet: this._activeWallet});
-    this.onClose();
+    console.log(cservice);
+    if (this.authService.isAuthentificated()) {
+      this.subscribe.emit({cservicer: cservice, activeWallet: this._activeWallet});
+      this.onClose();
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
   public onClose(): void {
     this.cservice = null;
   }
 
-  public onChoiceWallet(wallet: Wallet): void {
-    this.activateWallet.emit(wallet);
-  }
-
-  ngAfterViewInit(): void {
-    this._activeWallet = this.wallets[1];
+  public isAdmin(): boolean {
+    if (!this.authService.isAuthentificated()) {
+      return false;
+    }
+    return this.storageService.getCurrentUser().role === 'ADMIN';
   }
 
 }

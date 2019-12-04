@@ -27,7 +27,7 @@ public class WalletController {
         walletService.saveWallet(customer_id);
     }
 
-    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id) {
         walletService.deleteWallet(id);
     }

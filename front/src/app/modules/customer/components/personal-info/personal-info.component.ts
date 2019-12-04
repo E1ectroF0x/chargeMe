@@ -33,10 +33,10 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
               private storageService: StorageService) {}
 
   ngOnInit(): void {
-    this.loadWallets();
+    this.updateWallets();
     this.showUsers = false;
     this.showSub = null;
-    console.log(this.storageService.getCurrentUser().login);
+    this.selectedWallet = new Wallet();
   }
 
   private loadWallets(): void {
@@ -47,12 +47,16 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 
   private updateWallets(): void {
       setInterval ( () => {
-      this.loadWallets(); }, 1000);
+      this.loadWallets();
+      }, 1000);
   }
-
   public addWallet(): void {
     this.subscriptions.push(this.walletService.saveWallet(this.storageService.getCurrentUser().customer.id).subscribe( res => {
-      this.loadWallets();
+    }));
+  }
+
+  public deleteWallet(): void {
+    this.subscriptions.push(this.walletService.deleteWallet(this.selectedWallet.id).subscribe(res => {
     }));
   }
 

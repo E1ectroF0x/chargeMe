@@ -20,7 +20,7 @@ export class StorageService {
   }
 
   public getCurrentUser(): User {
-    return this.currentUser;
+    return this.currentUser || JSON.parse(localStorage.getItem(this.CURRENT_USER));
   }
 
   public getToken(): string {

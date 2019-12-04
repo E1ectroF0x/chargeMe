@@ -28,7 +28,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(20, 255, 99, .6);
+  background-color: #D6ADAD;
   height: 70px;
   width: 70px;
   border-radius: 20%;
@@ -38,7 +38,7 @@
 }
 
 .wallet:hover {
-  background-color: rgba(20, 255, 99, .8);
+  background-color: rgba(214, 173, 173, .85);
 }
 
 .info {
@@ -53,14 +53,21 @@
 }
 
 .selected {
-  background-color: rgba(20, 255, 99, .8);
+  background-color: rgba(214, 173, 173, .85);
   border-style: solid;
   border-width: 1px;
   border-color: #000000;
 }
 
 .add-wallet-btn button {
-  background-color: rgba(20, 255, 99, .6);
+  background-color: #D6ADAD;
   margin-bottom: -10px;
   margin-top: 10px;
+}
+
+.delete-wallet-btn button {
+  background-color: rgba(255, 255, 255, .64);
+  margin-bottom: -10px;
+  margin-top: 10px;
+  margin-left: 10px;
 }

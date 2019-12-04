@@ -10,4 +10,5 @@ public interface WalletService {
     List<Wallet> getAll();
     void save(Long customer_id);
     void refill(Long wallet_id, String amount);
+    void delete(Long wallet_id);
 }

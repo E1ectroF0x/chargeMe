@@ -10,3 +10,10 @@ label {
 .container {
   padding-top: 300px;
 }
+
+.login-btn {
+  background-color: rgb(255, 180, 180);
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(255, 120, 120);
+}

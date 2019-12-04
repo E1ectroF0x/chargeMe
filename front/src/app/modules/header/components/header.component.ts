@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {StorageService} from '../../../services/storage.service';
+import {UsersService} from '../../../services/users.service';
 
 
 @Component({
@@ -7,16 +8,23 @@ import {StorageService} from '../../../services/storage.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
 
   public isAuthorized = false;
 
-  constructor(private storageService: StorageService) {}
+  constructor(private storageService: StorageService,
+              private usersService: UsersService) {}
 
   ngOnInit(): void {
-    if (this.storageService.getCurrentUser()) {
-      this.isAuthorized = true;
-    }
+    this.usersService.getAuthorizedUser().subscribe(user => {
+      if (user.login === this.storageService.getCurrentUser().login) {
+        this.isAuthorized = true;
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
   public logout(): void {

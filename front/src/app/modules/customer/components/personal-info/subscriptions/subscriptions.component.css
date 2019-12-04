@@ -22,9 +22,16 @@
   border-style: solid;
   border-color: #000000;
   border-width: 1px;
+  position: relative;
 }
 
 .round {
   width: 90%;
   height: auto;
+}
+
+.svg-close {
+  margin-top: -10px;
+  margin-right: -10px;
+
 }

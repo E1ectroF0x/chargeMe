@@ -1,10 +1,4 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {Wallet} from '../../../models/wallet';
-import {CustomerService} from '../../../../../services/customer.service';
-import {CServiceService} from '../../../../../services/c-service.service';
-import {CService} from '../../../../cservice/models/c-service';
-import {Subscription} from 'rxjs';
-import {ChargingDataService} from '../../../../../services/charging-data.service';
 import {SubscriptionModel} from '../../../models/subscription-model';
 
 
@@ -17,11 +11,16 @@ export class SubscriptionsComponent {
 
   @Input() cservices: SubscriptionModel[];
   @Output() showCService: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public unsubscribeEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
   public select(model: SubscriptionModel): void {
     this.showCService.emit(model);
+  }
+
+  public unsubscribeEmit(model: SubscriptionModel): void {
+    this.unsubscribeEvent.emit(model);
   }
 
 }

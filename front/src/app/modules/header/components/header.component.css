@@ -5,6 +5,13 @@
   z-index: 1;
 }
 
+.login-btn {
+  background-color: rgb(255, 180, 180);
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(255, 120, 120);
+}
+
 .acc-btn {
   background-color: rgba(128, 128, 128, .8);
   color: #ffffff;

@@ -41,4 +41,10 @@ public class WalletServiceImpl implements WalletService {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.postForEntity(backendServerUrl + "/api/wallets/" + wallet_id.toString(), amount, String.class);
     }
+
+    @Override
+    public void delete(Long wallet_id) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(backendServerUrl + "/api/wallets/" + wallet_id.toString());
+    }
 }

@@ -16,4 +16,8 @@ export class WalletService {
     return this.http.post<void>('/api/wallets', customerId);
   }
 
+  deleteWallet(walletId: string): Observable<void> {
+    return this.http.delete<void>('/api/wallets/' + walletId);
+  }
+
 }

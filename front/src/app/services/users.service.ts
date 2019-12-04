@@ -20,8 +20,8 @@ export class UsersService {
     return this.http.post<AuthToken>('/api/token/generate-token', model);
   }
 
-  getAuthorizedUser(): Observable <any> {
-    return this.http.get<any>('/api/users/current');
+  getAuthorizedUser(): Observable <User> {
+    return this.http.get<User>('/api/users/current');
   }
 
   deleteUser(id: string): Observable<void> {

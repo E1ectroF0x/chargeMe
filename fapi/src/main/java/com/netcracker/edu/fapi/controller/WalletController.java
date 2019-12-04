@@ -30,4 +30,7 @@ public class WalletController {
     @PostMapping(value = "/{id}")
     public void refillWallet(@PathVariable Long id, @RequestBody String amount) { walletService.refill(id, amount); }
 
+    @DeleteMapping(value = "/{id}")
+    public void deleteWallet(@PathVariable Long id) { walletService.delete(id); }
+
 }
