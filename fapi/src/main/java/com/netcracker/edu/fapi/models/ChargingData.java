@@ -14,15 +14,18 @@ public class ChargingData {
     private CService cService;
     @JsonProperty("walletId")
     private Wallet wallet;
+    @JsonProperty("blocked")
+    private boolean isBlocked;
 
     public ChargingData() {}
 
-    public ChargingData(Long id, Date startDate, Customer customer, CService cService, Wallet wallet) {
+    public ChargingData(Long id, Date startDate, Customer customer, CService cService, Wallet wallet, boolean isBlocked) {
         this.id = id;
         this.startDate = startDate;
         this.customer = customer;
         this.cService = cService;
         this.wallet = wallet;
+        this.isBlocked = isBlocked;
     }
 
     public Long getId() { return id; }
@@ -45,4 +48,7 @@ public class ChargingData {
 
     public void setWallet(Wallet wallet) { this.wallet = wallet; }
 
+    public boolean isBlocked() { return isBlocked; }
+
+    public void setBlocked(boolean blocked) { isBlocked = blocked; }
 }

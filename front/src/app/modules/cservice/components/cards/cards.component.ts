@@ -53,7 +53,7 @@ export class CardsComponent implements OnInit, OnDestroy {
   }
 
   private subscribe(obj: any): void {
-    this.subscriptions.push(this.chargingDataService.subscribe(new ChargingDataViewModel(obj.cservicer.id, this.storageService.getCurrentUser().customer.id, obj.activeWallet.id)).subscribe(() => {
+    this.subscriptions.push(this.chargingDataService.subscribe(new ChargingDataViewModel(obj.cservicer.id, this.storageService.getCurrentUser().customer.id, obj.activeWallet.id, false)).subscribe(() => {
       this._updateCServices();
     }));
   }

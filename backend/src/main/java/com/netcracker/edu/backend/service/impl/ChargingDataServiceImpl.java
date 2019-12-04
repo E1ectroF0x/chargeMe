@@ -46,7 +46,7 @@ public class ChargingDataServiceImpl implements ChargingDataService {
         List<ChargingData> subs = chargingDataRepository.findAllByWalletId(wallet);
         List<SubscriptionModel> cservices = new ArrayList<>();
         for (ChargingData data : subs) {
-            cservices.add(new SubscriptionModel(data.getId(), data.getServiceId()));
+            cservices.add(new SubscriptionModel(data.getId(), data.getServiceId(), data.isBlocked()));
         }
         return cservices;
     }
@@ -73,10 +73,25 @@ public class ChargingDataServiceImpl implements ChargingDataService {
     public void chargeWallets() {
         List<ChargingData> subscriptions = (List<ChargingData>) chargingDataRepository.findAll();
         for (ChargingData sub : subscriptions) {
-            if (sub.getWalletId().getAmount() - sub.getServiceId().getCost() <= 0.0) {
-                continue;
+            if (sub.getWalletId().getAmount() - sub.getServiceId().getCost() >= 0.0) {
+                if (sub.isBlocked()) {
+                    block(sub.getId());
+                }
+                walletService.charge(sub.getWalletId().getId(), sub.getServiceId().getCost());
+                sub.getWalletId().setAmount(sub.getWalletId().getAmount()-sub.getServiceId().getCost());
             }
-            walletService.charge(sub.getWalletId().getId(), sub.getServiceId().getCost());
+            else {
+                if (!sub.isBlocked()) {
+                    block(sub.getId());
+                }
+            }
         }
+    }
+
+    @Override
+    public void block(Long id) {
+        ChargingData subscription = this.chargingDataRepository.findById(id).orElse(null);
+        subscription.setBlocked(!subscription.isBlocked());
+        this.chargingDataRepository.save(subscription);
     }
 }

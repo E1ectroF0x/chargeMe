@@ -61,7 +61,9 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }
 
   private updateCServices(): void {
-    this.loadCServices(this.selectedWallet);
+    setInterval(() => {
+      this.loadCServices(this.selectedWallet);
+    }, 1000);
   }
 
   public loadCServices(wallet: Wallet): void {

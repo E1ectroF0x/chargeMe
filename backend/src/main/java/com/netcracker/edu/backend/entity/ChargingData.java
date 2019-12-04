@@ -15,6 +15,8 @@ public class ChargingData {
     private CService serviceId;
     private Wallet walletId;
 
+    private boolean isBlocked = false;
+
     public ChargingData() {}
 
     public ChargingData(LocalDateTime startDate) {
@@ -51,4 +53,10 @@ public class ChargingData {
     public Wallet getWalletId() {return walletId;}
 
     public void setWalletId(Wallet walletId) {this.walletId = walletId;}
+
+    @Basic
+    @Column(name = "is_blocked")
+    public boolean isBlocked() { return isBlocked; }
+
+    public void setBlocked(boolean blocked) { isBlocked = blocked; }
 }

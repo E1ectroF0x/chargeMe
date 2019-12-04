@@ -33,5 +33,11 @@
 .svg-close {
   margin-top: -10px;
   margin-right: -10px;
-
+  cursor: pointer;
 }
+
+.blocked {
+  background-color: rgba(255, 177, 177, .75);
+}
+
+

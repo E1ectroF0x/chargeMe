@@ -13,4 +13,5 @@ public interface ChargingDataService {
     ChargingData saveSubscription(ChargingDataViewModel model);
     void deleteSubscription(Long id);
     void chargeWallets();
+    void block(Long id);
 }

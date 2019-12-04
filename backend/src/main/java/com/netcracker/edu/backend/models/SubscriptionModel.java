@@ -6,12 +6,14 @@ public class SubscriptionModel {
 
     private Long id;
     private CService cservice;
+    private boolean isBlocked = false;
 
     public SubscriptionModel () {}
 
-    public SubscriptionModel(Long id, CService cservice) {
+    public SubscriptionModel(Long id, CService cservice, boolean isBlocked) {
         this.id = id;
         this.cservice = cservice;
+        this.isBlocked = isBlocked;
     }
 
     public Long getId() { return id; }
@@ -22,4 +24,7 @@ public class SubscriptionModel {
 
     public void setCservice(CService cservice) { this.cservice = cservice; }
 
+    public boolean isBlocked() { return isBlocked; }
+
+    public void setBlocked(boolean blocked) { isBlocked = blocked; }
 }
