@@ -20,7 +20,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class PersonalInfoComponent implements OnInit, OnDestroy {
 
   form = new FormGroup({
-    amount: new FormControl('', [Validators.min(0.1), Validators.required, Validators.pattern(/[0-9]/)])
+    amount: new FormControl('', [Validators.min(0.1), Validators.max(1000) , Validators.required, Validators.pattern(/[0-9]/)])
   });
 
   public showUsers: boolean;
@@ -50,9 +50,9 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }
 
   private loadWallets(): void {
-    this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().customer.id).subscribe( wallets => {
-      this.wallets = wallets;
-    }));
+      this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().customer.id).subscribe(wallets => {
+        this.wallets = wallets;
+      }));
   }
 
   private updateWallets(): void {
@@ -67,6 +67,8 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 
   public deleteWallet(): void {
     this.subscriptions.push(this.walletService.deleteWallet(this.selectedWallet.id).subscribe(res => {
+      this.selectedWallet = new Wallet();
+      this.cservices = null;
     }));
   }
 
@@ -77,9 +79,11 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }
 
   public loadCServices(wallet: Wallet): void {
-    this.subscriptions.push(this.chargingDataService.getSubscriptionsByWallet(wallet.id).subscribe( subs => {
-      this.cservices = subs;
-    }));
+    if (this.selectedWallet.id) {
+      this.subscriptions.push(this.chargingDataService.getSubscriptionsByWallet(wallet.id).subscribe(subs => {
+        this.cservices = subs;
+      }));
+    }
   }
 
   public chooseWallet(wallet: Wallet): void {

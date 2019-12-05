@@ -40,6 +40,10 @@ export class CardsComponent implements OnInit, OnDestroy {
     this.isPost = false;
   }
 
+  public isAdmin(): boolean {
+    return this.authService.isAuthentificated() && this.storageService.getCurrentUser().role === 'ADMIN';
+  }
+
   public loadWallets(): void {
     this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().customer.id).subscribe(wallets => {
       this.wallets = wallets;

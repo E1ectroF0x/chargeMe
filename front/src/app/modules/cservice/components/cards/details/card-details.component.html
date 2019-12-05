@@ -13,9 +13,12 @@
             <div class="d-flex justify-content-between">
               <div>
                 <button class="btn btn-warning mt-1" (click)="onSubscribe(cservice)">Subscribe</button>
-                <select class="ml-2 mt-1" name="wallets" [(ngModel)]="_activeWallet" *ngIf="_wallets != null">
+                <select class="ml-2 mt-1" name="wallets" [(ngModel)]="_activeWallet" *ngIf="isWallets()">
                   <option *ngFor="let wallet of _wallets" [ngValue]="wallet">{{wallet.amount}}$</option>
                 </select>
+                <div class="invalid" *ngIf="!_canSubscribe">
+                  <span>Add at least one wallet in your account-page</span>
+                </div>
               </div>
               <div>
                 <button class="btn btn-primary mr-1 mt-1" (click)="onDelete(cservice)" *ngIf=this.isAdmin()>Delete</button>

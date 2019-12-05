@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
 @EnableScheduling
@@ -56,6 +57,18 @@ public class ChargingDataServiceImpl implements ChargingDataService {
         CService cService = cServiceService.getById(model.getCservice_id());
         Customer customer = customerService.getById(model.getCustomer_id());
         Wallet wallet = walletService.getById(model.getWallet_id());
+
+        List<SubscriptionModel> subscriptions = getAllByWallet(wallet.getId());
+        AtomicBoolean isAlreadySubscribed = new AtomicBoolean(false);
+        subscriptions.forEach(subscription -> {
+            if (subscription.getCservice().getName().equals(cService.getName())) {
+                isAlreadySubscribed.set(true);
+            }
+        });
+        if (isAlreadySubscribed.get()) {
+            return null;
+        }
+
         ChargingData chargingData = new ChargingData();
         chargingData.setServiceId(cService);
         chargingData.setCustomerId(customer);

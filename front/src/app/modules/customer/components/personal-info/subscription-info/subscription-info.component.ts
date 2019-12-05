@@ -11,15 +11,10 @@ import {SubscriptionModel} from '../../../models/subscription-model';
 export class SubscriptionInfoComponent implements OnInit {
 
   @Input() public cservice: SubscriptionModel;
-  @Output() public unsubscribeEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit(): void {
-  }
-
-  public unsubscribeEmit(model: SubscriptionModel): void {
-    this.unsubscribeEvent.emit(model);
   }
 
 }

@@ -9,7 +9,7 @@ export class APIInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token: string = localStorage.getItem('token');
     const authReq = req.clone({
-      headers: new HttpHeaders(token && token !== 'null' ? {
+      headers: new HttpHeaders(token && token !== 'null' && req.url[2] !== 't' ? {
         Authorization: 'Bearer ' + token
       } : null)
     });

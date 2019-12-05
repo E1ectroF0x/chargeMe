@@ -24,9 +24,11 @@ export class UsersComponent implements OnInit {
   }
 
   public loadUsers(): void {
-    this.usersService.getAll().subscribe(accounts => {
-      this.users = accounts;
-    });
+    if (this.storageService.getCurrentUser().role === 'ADMIN') {
+      this.usersService.getAll().subscribe(accounts => {
+        this.users = accounts;
+      });
+    }
   }
 
   public deleteUsers(): void {

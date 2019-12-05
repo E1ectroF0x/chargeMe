@@ -24,3 +24,8 @@
 .cost-span {
   font-weight: bold;
 }
+
+.invalid {
+  margin-top: 10px;
+  color: #dc3545;
+}

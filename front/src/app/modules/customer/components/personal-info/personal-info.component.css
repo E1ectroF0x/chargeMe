@@ -73,11 +73,11 @@
 }
 
 .invalid {
-  color: #dc3545;
+  color: #850814;
 }
 
 .invalid input {
   border-style: solid;
   border-width: 1px;
-  border-color: #dc3545;
+  border-color: #850814;
 }
