@@ -15,7 +15,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class RegistrationComponent implements OnDestroy {
 
   registrationForm = new FormGroup({
-    email_: new FormControl('', [Validators.required, Validators.email]),
+    email_: new FormControl('', [Validators.required, Validators.pattern(/[A-z0-9]+@[A-z0-9]+\.[A-z0-9]/)]),
     login_: new FormControl('', [Validators.required, Validators.pattern(/[A-z0-9]/)]),
     pass_: new FormControl('', [Validators.required, Validators.pattern(/[A-z0-9]/)])
   });

@@ -6,6 +6,7 @@ import com.netcracker.edu.fapi.models.ChargingDataViewModel;
 import com.netcracker.edu.fapi.models.SubscriptionModel;
 import com.netcracker.edu.fapi.service.ChargingDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

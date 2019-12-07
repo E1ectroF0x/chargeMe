@@ -9,8 +9,6 @@ public class ChargingData {
 
     private Long id;
 
-    private LocalDateTime startDate;
-
     private Customer customerId;
     private CService serviceId;
     private Wallet walletId;
@@ -19,22 +17,12 @@ public class ChargingData {
 
     public ChargingData() {}
 
-    public ChargingData(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {return id;}
 
     public void setId(Long id) {this.id = id;}
-
-    @Basic
-    @Column(name = "startDate")
-    public LocalDateTime getStartDate() {return startDate; }
-
-    public void setStartDate(LocalDateTime startDate) {this.startDate = startDate; }
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")

@@ -2,12 +2,9 @@ package com.netcracker.edu.fapi.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
-
 public class ChargingData {
 
     private Long id;
-    private Date startDate;
     @JsonProperty("customerId")
     private Customer customer;
     @JsonProperty("serviceId")
@@ -19,9 +16,8 @@ public class ChargingData {
 
     public ChargingData() {}
 
-    public ChargingData(Long id, Date startDate, Customer customer, CService cService, Wallet wallet, boolean isBlocked) {
+    public ChargingData(Long id, Customer customer, CService cService, Wallet wallet, boolean isBlocked) {
         this.id = id;
-        this.startDate = startDate;
         this.customer = customer;
         this.cService = cService;
         this.wallet = wallet;
@@ -31,10 +27,6 @@ public class ChargingData {
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }
-
-    public Date getStartDate() { return startDate; }
-
-    public void setStartDate(Date startDate) { this.startDate = startDate; }
 
     public Customer getCustomer() { return customer; }
 

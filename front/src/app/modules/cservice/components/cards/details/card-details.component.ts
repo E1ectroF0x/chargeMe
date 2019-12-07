@@ -20,7 +20,7 @@ export class CardDetailsComponent implements OnInit {
 
   public _activeWallet: Wallet;
   public _wallets: Wallet[];
-  public _canSubscribe = true;
+  public _canSubscribe: boolean = true;
   @Input() cservice: CService;
   @Output() delete: EventEmitter<any> = new EventEmitter();
   @Output() subscribe: EventEmitter<any> = new EventEmitter();
@@ -51,12 +51,12 @@ export class CardDetailsComponent implements OnInit {
 
   public onSubscribe(cservice: CService): void {
     console.log(cservice);
-    if (this.authService.isAuthentificated() && this._wallets.length > 0) {
+    if (this.authService.isAuthentificated() && this._wallets && this._wallets.length) {
       this.subscribe.emit({cservicer: cservice, activeWallet: this._activeWallet});
       this.onClose();
       return;
     }
-    if (this._wallets.length === 0) {
+    if (this._wallets && this._wallets.length) {
       this._canSubscribe = false;
       return;
     }
@@ -75,7 +75,7 @@ export class CardDetailsComponent implements OnInit {
   }
 
   public isWallets(): boolean {
-    return this.authService.isAuthentificated() && this._wallets[0] != null;
+    return this.authService.isAuthentificated() && this._wallets && this._wallets.length > 0;
   }
 
 }

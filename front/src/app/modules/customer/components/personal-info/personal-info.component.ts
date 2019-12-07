@@ -10,6 +10,7 @@ import {WalletService} from '../../../../services/wallet.service';
 import {SubscriptionModel} from '../../models/subscription-model';
 import {StorageService} from '../../../../services/storage.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../../../services/auth.service';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
               private usersService: UsersService,
               private chargingDataService: ChargingDataService,
               private walletService: WalletService,
-              private storageService: StorageService) {}
+              private storageService: StorageService,
+              private authService: AuthService) {}
 
   ngOnInit(): void {
     this.updateWallets();
@@ -50,9 +52,11 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }
 
   private loadWallets(): void {
+    if (this.authService.isAuthentificated()) {
       this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().customer.id).subscribe(wallets => {
         this.wallets = wallets;
       }));
+    }
   }
 
   private updateWallets(): void {
