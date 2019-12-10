@@ -1,7 +1,18 @@
 <nav class="navbar navbar-light align-self-start">
-  <a routerLink="">
-    <span class="navbar-brand mb-0 h1">ChargeMe</span>
-  </a>
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" width="43.318" height="40.774" viewBox="0 0 43.318 40.774">
+      <g id="yekaterinburg-metro-logo" transform="translate(23 80.271)">
+        <g id="Group_2" data-name="Group 2" transform="translate(-23 -80.271)">
+          <path id="Path_4" data-name="Path 4" d="M0,51.115V69.323H15.77l0-2.576Z" transform="translate(0 -28.552)"/>
+          <path id="Path_5" data-name="Path 5" d="M59.078,69.329h15.77V51.121L59.082,66.754Z" transform="translate(-31.529 -28.555)"/>
+          <path id="Path_6" data-name="Path 6" d="M43.318,2.82,21.705,24.249,0,2.729V21.246l21.705,21.52L43.315,21.34Z" transform="translate(0 -2.729)"/>
+        </g>
+      </g>
+    </svg>
+    <a routerLink="">
+      <span class="navbar-brand mb-0 h1 ml-2">ChargeMe</span>
+    </a>
+  </div>
   <div>
     <a routerLink="/account" *ngIf="this.isAuthorized">
       <button class="btn btn-primary mr-2 acc-btn">Account</button>

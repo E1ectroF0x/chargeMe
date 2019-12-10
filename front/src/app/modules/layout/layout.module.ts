@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StorageService} from '../../services/storage.service';
 import {AuthService} from '../../services/auth.service';
 import {CommonModule} from '@angular/common';
+import {FooterComponent} from './components/footer/footer.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {CommonModule} from '@angular/common';
     HomeComponent,
     LoginComponent,
     RegistrationComponent,
-    AccountComponent
+    AccountComponent,
+    FooterComponent
   ],
   imports: [
     CustomerModule,

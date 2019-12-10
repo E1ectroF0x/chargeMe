@@ -12,8 +12,8 @@
 }
 
 .card-top {
-  height: 120px;
-  width: 120px;
+  height: 200px;
+  width: 200px;
   background-color: rgba(255, 255, 255, .75);
   border-radius: 100%;
   display: flex;
@@ -23,6 +23,11 @@
   border-color: #000000;
   border-width: 1px;
   position: relative;
+  cursor: pointer;
+}
+
+.card-top:hover {
+  background-color: rgb(255, 180, 180);
 }
 
 .round {

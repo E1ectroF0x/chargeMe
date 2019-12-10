@@ -3,6 +3,8 @@ export class CService {
   name: string;
   cost: number;
   genre: string;
+  image: string;
+  description: string;
 
   constructor() {}
 }

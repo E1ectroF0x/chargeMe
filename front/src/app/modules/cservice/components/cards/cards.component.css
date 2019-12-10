@@ -21,8 +21,8 @@
 }
 
 .card-top {
-  height: 120px;
-  width: 120px;
+  height: 200px;
+  width: 200px;
   background-color: rgba(255, 255, 255, .75);
   border-radius: 100%;
   border-style: solid;
@@ -31,6 +31,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.card-top:hover {
+  background-color: rgba(255, 180, 180, .8);
 }
 
 .round {
@@ -40,11 +45,15 @@
 
 .card-add-button button {
   font-family: "Segoe UI", serif;
-  background-color: rgb(255, 180, 180);
-  height: 120px;
-  width: 120px;
+  background-color: rgba(255, 180, 180, .8);
+  height: 200px;
+  width: 200px;
   border-radius: 100%;
   border-style: solid;
   border-color: #000000;
   border-width: 1px;
+}
+
+.card-add-button button:hover {
+  background-color: rgba(255, 180, 180, 1);
 }

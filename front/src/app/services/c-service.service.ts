@@ -20,6 +20,7 @@ export class CServiceService {
     fd.append('upload_preset', 'i8cspdmn');
     fd.append('public_id', cservice.name);
     this.http.post('https://api.cloudinary.com/v1_1/e1ectrof0x/image/upload', fd).subscribe();
+    cservice.image = 'http://res.cloudinary.com/e1ectrof0x/image/upload/' + cservice.name;
     return this.http.post<CService>('/api/services', cservice);
   }
 

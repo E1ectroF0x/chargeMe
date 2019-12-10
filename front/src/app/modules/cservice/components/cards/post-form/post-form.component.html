@@ -24,6 +24,12 @@
             <input id="serviceGenre" placeholder="Genre" class="form-control" name="genre" [(ngModel)]="cservice.genre">
           </div>
           <div class="form-group">
+            <label for="serviceDescription">
+              Description:
+            </label>
+            <input id="serviceDescription" placeholder="Description" class="form-control" name="description" [(ngModel)]="cservice.description">
+          </div>
+          <div class="form-group">
             <p><input type="file" name="logo" multiple accept="image/png" (change)="onFileChange($event)"></p>
           </div>
           <div class="row justify-content-between">

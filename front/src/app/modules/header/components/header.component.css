@@ -5,6 +5,10 @@
   z-index: 1;
 }
 
+.navbar-brand{
+  font-weight: bold;
+}
+
 .login-btn {
   background-color: rgb(255, 180, 180);
   border-style: solid;
