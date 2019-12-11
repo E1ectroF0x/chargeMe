@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LoginModel} from './models/login-model';
 import {StorageService} from '../../../../services/storage.service';
 import {AuthToken, UsersService} from '../../../../services/users.service';
 import {User} from '../../../customer/models/user';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {error} from 'util';
+import {Subscription} from 'rxjs';
 
 
 @Component ({
@@ -12,7 +14,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm = new FormGroup({
     login_: new FormControl('', [Validators.required, Validators.pattern(/[A-z0-9]/)]),
@@ -20,7 +22,7 @@ export class LoginComponent implements OnInit {
   });
 
   public loginModel: LoginModel;
-  public showCheckYourSetDataAlert = false;
+  private subscriptions: Subscription[] = [];
 
   constructor(private storageService: StorageService,
               private usersService: UsersService,
@@ -43,22 +45,26 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.usersService.generateToken(this.loginModel).subscribe((authToken: AuthToken) => {
+    this.subscriptions.push(this.usersService.generateToken(this.loginModel).subscribe((authToken: AuthToken) => {
       if (authToken.token) {
         this.storageService.setToken(authToken.token);
-        this.usersService.getAuthorizedUser()
+        this.subscriptions.push(this.usersService.getAuthorizedUser()
           .subscribe((userModel: User) => {
             this.storageService.setCurrentUser(userModel);
             this.router.navigateByUrl('');
-          });
+          }));
       }
     }, (error) => {
       if (error.status === 401) {
-        this.showCheckYourSetDataAlert = true;
+        alert('Invalid username or password');
       } else {
         alert(error.message);
       }
-    });
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

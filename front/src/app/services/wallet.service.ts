@@ -9,7 +9,7 @@ export class WalletService {
   constructor(private http: HttpClient) {}
 
   refillWallet(walletId: string, amount: string): Observable<void> {
-    return this.http.post<any>('/api/wallets/' + walletId, amount);
+    return this.http.post<void>('/api/wallets/' + walletId, amount);
   }
 
   saveWallet(customerId: string): Observable<void> {

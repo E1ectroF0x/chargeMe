@@ -108,14 +108,15 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     this.showSub = cservice === this.showSub ? null : cservice;
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
   public unsubscribe(model: SubscriptionModel): void {
     this.subscriptions.push(this.chargingDataService.unsubscribe(model.id).subscribe( () => {
       this.updateCServices();
     } ));
   }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
 
 }

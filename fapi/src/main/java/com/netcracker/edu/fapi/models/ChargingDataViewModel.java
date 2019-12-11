@@ -8,7 +8,7 @@ public class ChargingDataViewModel {
     @JsonProperty("customerId")
     private String customer_id;
     @JsonProperty("walletId")
-    private String  wallet_id;
+    private String wallet_id;
 
     public ChargingDataViewModel() {}
 

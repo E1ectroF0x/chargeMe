@@ -10,8 +10,8 @@ import {SubscriptionModel} from '../../../models/subscription-model';
 export class SubscriptionsComponent {
 
   @Input() cservices: SubscriptionModel[];
-  @Output() showCService: EventEmitter<any> = new EventEmitter<any>();
-  @Output() public unsubscribeEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() showCService: EventEmitter<SubscriptionModel> = new EventEmitter();
+  @Output() public unsubscribeEvent: EventEmitter<SubscriptionModel> = new EventEmitter();
 
   constructor() {}
 

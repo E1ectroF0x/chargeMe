@@ -16,8 +16,8 @@ export class AuthService {
     return token && token !== 'null' && !!this.storageService.getCurrentUser();
   }
 
-  public _register(model: RegistrationModel): Observable<any> {
-    return this.http.post<any>('/api/users/register', model);
+  public _register(model: RegistrationModel): Observable<void> {
+    return this.http.post<void>('/api/users/register', model);
   }
 
 }

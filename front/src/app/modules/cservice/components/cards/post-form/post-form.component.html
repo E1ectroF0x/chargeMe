@@ -3,25 +3,34 @@
   <div class="popup">
     <div class="popup-content">
 
-      <form method="post" class="popup-content-details" enctype="multipart/form-data" >
+      <form method="post" class="popup-content-details" enctype="multipart/form-data" [formGroup]="postForm">
         <div class="ml-2 mt-2 mr-2">
           <div class="form-group">
             <label for="serviceName">
               Service name:
             </label>
-            <input id="serviceName" placeholder="Name" class="form-control" name="name" [(ngModel)]="cservice.name">
+            <input id="serviceName" placeholder="Name" class="form-control" name="name" [(ngModel)]="cservice.name" formControlName="name_">
+            <div class="invalid" *ngIf="isFormValid('name_')">
+              <span>This field is required!</span>
+            </div>
           </div>
           <div class="form-group">
             <label for="serviceCost">
               Cost:
             </label>
-            <input id="serviceCost" placeholder="Cost" class="form-control" name="cost" [(ngModel)]="cservice.cost">
+            <input id="serviceCost" placeholder="Cost" class="form-control" name="cost" [(ngModel)]="cservice.cost" formControlName="cost_">
+            <div class="invalid" *ngIf="isFormValid('cost_')">
+              <span>Check this field</span>
+            </div>
           </div>
           <div class="form-group">
             <label for="serviceGenre">
               Genre:
             </label>
-            <input id="serviceGenre" placeholder="Genre" class="form-control" name="genre" [(ngModel)]="cservice.genre">
+            <input id="serviceGenre" placeholder="Genre" class="form-control" name="genre" [(ngModel)]="cservice.genre" formControlName="genre_">
+            <div class="invalid" *ngIf="isFormValid('genre_')">
+              <span>This field is required!</span>
+            </div>
           </div>
           <div class="form-group">
             <label for="serviceDescription">

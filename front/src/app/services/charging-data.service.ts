@@ -16,11 +16,11 @@ export class ChargingDataService {
   }
 
   subscribe(model: ChargingDataViewModel): Observable<void> {
-    return this.http.post<any>('/api/subscriptions/', model);
+    return this.http.post<void>('/api/subscriptions/', model);
   }
 
   unsubscribe(subscriptionId: string): Observable<void> {
-    return this.http.delete<any>('/api/subscriptions/' + subscriptionId);
+    return this.http.delete<void>('/api/subscriptions/' + subscriptionId);
   }
 
 }

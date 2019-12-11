@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {CService} from '../../../models/c-service';
 import {CServiceService} from '../../../../../services/c-service.service';
 import {Wallet} from '../../../../customer/models/wallet';
@@ -8,6 +8,7 @@ import {WalletService} from '../../../../../services/wallet.service';
 import {CustomerService} from '../../../../../services/customer.service';
 import {AuthService} from '../../../../../services/auth.service';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 
 @Component ({
@@ -15,16 +16,17 @@ import {Router} from '@angular/router';
   templateUrl: './card-details.component.html',
   styleUrls: ['./card-details.component.css']
 })
-export class CardDetailsComponent implements OnInit {
+export class CardDetailsComponent implements OnInit, OnDestroy {
 
 
   public _activeWallet: Wallet;
   public _wallets: Wallet[];
   public _canSubscribe: boolean = true;
+  private subscriptions: Subscription[] = [];
   @Input() cservice: CService;
-  @Output() delete: EventEmitter<any> = new EventEmitter();
+  @Output() delete: EventEmitter<CService> = new EventEmitter();
   @Output() subscribe: EventEmitter<any> = new EventEmitter();
-  @Output() activateWallet: EventEmitter<any> = new EventEmitter<any>();
+  //@Output() activateWallet: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private storageService: StorageService,
               private customerService: CustomerService,
@@ -38,10 +40,10 @@ export class CardDetailsComponent implements OnInit {
   }
 
   private loadWallets(): void {
-   this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().customer.id).subscribe(wallets => {
+   this.subscriptions.push(this.customerService.getWalletsByCustomerId(this.storageService.getCurrentUser().customer.id).subscribe(wallets => {
       this._wallets = wallets;
       this._activeWallet = wallets[0];
-    });
+    }));
   }
 
   public onDelete(cservice: CService): void {
@@ -56,7 +58,7 @@ export class CardDetailsComponent implements OnInit {
       this.onClose();
       return;
     }
-    if (this._wallets && this._wallets.length) {
+    if (this._wallets && this._wallets.length === 0) {
       this._canSubscribe = false;
       return;
     }
@@ -76,6 +78,10 @@ export class CardDetailsComponent implements OnInit {
 
   public isWallets(): boolean {
     return this.authService.isAuthentificated() && this._wallets && this._wallets.length > 0;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe())
   }
 
 }

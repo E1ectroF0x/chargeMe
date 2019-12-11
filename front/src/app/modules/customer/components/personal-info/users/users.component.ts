@@ -10,11 +10,12 @@ import {StorageService} from '../../../../../services/storage.service';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
 
   @Input() public isClicked: boolean;
   public users: User[];
-  @Output() public showUsersEvent: EventEmitter<any> = new EventEmitter<any>();
+  private subscriptions: Subscription[] = [];
+  //@Output() public showUsersEvent: EventEmitter<any> = new EventEmitter();
 
   constructor(private usersService: UsersService,
               private storageService: StorageService) {}
@@ -25,20 +26,24 @@ export class UsersComponent implements OnInit {
 
   public loadUsers(): void {
     if (this.storageService.getCurrentUser().role === 'ADMIN') {
-      this.usersService.getAll().subscribe(accounts => {
+      this.subscriptions.push(this.usersService.getAll().subscribe(accounts => {
         this.users = accounts;
-      });
+      }));
     }
   }
 
   public deleteUsers(): void {
     for (const user of this.users) {
       if (user.isDelete && user.login !== this.storageService.getCurrentUser().login) {
-        this.usersService.deleteUser(user.id).subscribe(res => {
+       this.subscriptions.push(this.usersService.deleteUser(user.id).subscribe(res => {
           this.loadUsers();
-        });
+        }));
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

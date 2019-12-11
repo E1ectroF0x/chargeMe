@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {CardDetailsComponent} from './components/cards/details/card-details.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PostFormComponent} from './components/cards/post-form/post-form.component';
 import {CloudinaryModule} from '@cloudinary/angular-5.x';
 import {StorageService} from '../../services/storage.service';
@@ -22,7 +22,8 @@ import {StorageService} from '../../services/storage.service';
     RouterModule,
     BrowserModule,
     FormsModule,
-    CloudinaryModule
+    CloudinaryModule,
+    ReactiveFormsModule
   ],
   providers: [CServiceService, StorageService],
   exports: [

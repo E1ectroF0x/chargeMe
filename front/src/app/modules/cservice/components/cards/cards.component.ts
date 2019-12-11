@@ -19,7 +19,7 @@ export class CardsComponent implements OnInit, OnDestroy {
 
   public wallets: Wallet[];
   public cservices: CService[];
-  public subscriptions: Subscription[] = [];
+  private subscriptions: Subscription[] = [];
   public isSelected: CService;
   @Input() public isPost;
 
