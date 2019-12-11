@@ -6,7 +6,6 @@ import {ChargingDataService} from '../../../../services/charging-data.service';
 import {ChargingDataViewModel} from '../../models/ChargingDataViewModel';
 import {Wallet} from '../../../customer/models/wallet';
 import {CustomerService} from '../../../../services/customer.service';
-import { Cloudinary } from '@cloudinary/angular-5.x';
 import {StorageService} from '../../../../services/storage.service';
 import {AuthService} from '../../../../services/auth.service';
 
@@ -27,7 +26,6 @@ export class CardsComponent implements OnInit, OnDestroy {
   constructor(private cserviceService: CServiceService,
               private chargingDataService: ChargingDataService,
               private customerService: CustomerService,
-              private cloudinary: Cloudinary,
               private storageService: StorageService,
               private authService: AuthService) {}
 
