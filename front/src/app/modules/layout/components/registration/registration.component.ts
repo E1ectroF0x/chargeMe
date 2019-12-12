@@ -35,7 +35,11 @@ export class RegistrationComponent implements OnDestroy {
     }
 
     this.subscriptions.push(this.authService._register(model).subscribe(res => {
-      this.router.navigateByUrl('login');
+      if (res.error) {
+        alert('This user is already exists');
+      } else {
+        this.router.navigateByUrl('login');
+      }
     }));
   }
 

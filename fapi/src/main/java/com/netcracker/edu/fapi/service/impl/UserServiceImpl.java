@@ -1,5 +1,6 @@
 package com.netcracker.edu.fapi.service.impl;
 
+import com.netcracker.edu.fapi.models.ErrorModel;
 import com.netcracker.edu.fapi.models.RegistrationViewModel;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.models.UserViewModel;
@@ -39,14 +40,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public boolean save(RegistrationViewModel model) {
+    public ErrorModel save(RegistrationViewModel model) {
         if (this.getUserByLogin(model.getLogin()) != null) {
-            return false;
+            return new ErrorModel(true);
         }
         model.setPassword(bCryptPasswordEncoder.encode(model.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.postForEntity(backendServerUrl + "/api/users", model, User.class);
-        return true;
+        return new ErrorModel(false);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.netcracker.edu.fapi.service;
 
+import com.netcracker.edu.fapi.models.ErrorModel;
 import com.netcracker.edu.fapi.models.RegistrationViewModel;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.models.UserViewModel;
@@ -12,7 +13,7 @@ public interface UserService {
     List<UserViewModel> getAll();
     //List<User> getAll();
     //User save(User user);
-    boolean save(RegistrationViewModel model);
+    ErrorModel save(RegistrationViewModel model);
     void delete(Long id);
 
 }

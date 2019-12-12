@@ -3,6 +3,7 @@ import {StorageService} from './storage.service';
 import {RegistrationModel} from '../modules/layout/components/registration/models/registration-model';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {ErrorModel} from '../modules/layout/components/registration/models/error-model';
 
 
 @Injectable()
@@ -16,8 +17,8 @@ export class AuthService {
     return token && token !== 'null' && !!this.storageService.getCurrentUser();
   }
 
-  public _register(model: RegistrationModel): Observable<void> {
-    return this.http.post<void>('/api/users/register', model);
+  public _register(model: RegistrationModel): Observable<ErrorModel> {
+    return this.http.post<ErrorModel>('/api/users/register', model);
   }
 
 }
