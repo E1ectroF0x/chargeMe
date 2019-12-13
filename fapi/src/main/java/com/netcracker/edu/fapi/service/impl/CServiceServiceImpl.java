@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.service.impl;
 
 import com.netcracker.edu.fapi.models.CService;
+import com.netcracker.edu.fapi.models.Subs;
 import com.netcracker.edu.fapi.service.CServiceService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,12 @@ public class CServiceServiceImpl implements CServiceService {
     public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/services/del/" + id);
+    }
+
+    @Override
+    public Subs getSubscribers(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        Subs num = restTemplate.getForObject(backendServerUrl + "/api/services/sub/" + id.toString(), Subs.class);
+        return num;
     }
 }

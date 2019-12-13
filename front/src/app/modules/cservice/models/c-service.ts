@@ -5,6 +5,7 @@ export class CService {
   genre: string;
   image: string;
   description: string;
+  subs: string;
 
   constructor() {}
 }

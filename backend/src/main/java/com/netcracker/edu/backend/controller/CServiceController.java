@@ -1,6 +1,7 @@
 package com.netcracker.edu.backend.controller;
 
 import com.netcracker.edu.backend.entity.CService;
+import com.netcracker.edu.backend.models.Subs;
 import com.netcracker.edu.backend.service.CServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,5 +34,10 @@ public class CServiceController {
 
     @RequestMapping(value = "/moreAverage", method = RequestMethod.GET)
     public List<CService> getMoreAve() { return cServiceService.getMoreAve(); }
+
+    @RequestMapping(value = "/sub/{id}", method = RequestMethod.GET)
+    public Subs getSubs(@PathVariable Long id) {
+       return this.cServiceService.getSubscribers(id);
+    }
 
 }

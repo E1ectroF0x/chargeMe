@@ -26,7 +26,6 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
   @Input() cservice: CService;
   @Output() delete: EventEmitter<CService> = new EventEmitter();
   @Output() subscribe: EventEmitter<any> = new EventEmitter();
-  //@Output() activateWallet: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private storageService: StorageService,
               private customerService: CustomerService,
@@ -52,7 +51,6 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
   }
 
   public onSubscribe(cservice: CService): void {
-    console.log(cservice);
     if (this.authService.isAuthentificated() && this._wallets && this._wallets.length) {
       this.subscribe.emit({cservicer: cservice, activeWallet: this._activeWallet});
       this.onClose();

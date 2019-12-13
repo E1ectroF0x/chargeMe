@@ -14,4 +14,7 @@ public interface ChargingDataRepository extends CrudRepository<ChargingData, Lon
 
     List<ChargingData> findAllByWalletId(Wallet wallet);
 
+    @Query(value = "SELECT COUNT(subscriptions.customer_id) FROM subscriptions WHERE service_id = :id", nativeQuery = true)
+    Long getSubsById(Long id);
+
 }

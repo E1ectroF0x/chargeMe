@@ -2,7 +2,9 @@ package com.netcracker.edu.backend.service.impl;
 
 import com.netcracker.edu.backend.entity.CService;
 import com.netcracker.edu.backend.entity.ChargingData;
+import com.netcracker.edu.backend.models.Subs;
 import com.netcracker.edu.backend.repository.CServiceRepository;
+import com.netcracker.edu.backend.repository.ChargingDataRepository;
 import com.netcracker.edu.backend.service.CServiceService;
 import com.netcracker.edu.backend.service.ChargingDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class CServiceServiceImpl implements CServiceService {
 
     @Autowired
     private ChargingDataService chargingDataService;
+
+    @Autowired
+    private ChargingDataRepository chargingDataRepository;
 
     @Override
     public List<CService> getAllCServices() {
@@ -50,5 +55,15 @@ public class CServiceServiceImpl implements CServiceService {
         return cServiceRepository.findAllGreaterThanAverage();
     }
 
-
+    @Override
+    public Subs getSubscribers(Long id) {
+        List<ChargingData> subscriptions = chargingDataService.getAllSubscriptions();
+        Long subs = new Long(0);
+        for (ChargingData subscription : subscriptions) {
+            if (subscription.getServiceId().getId() == id) {
+                subs++;
+            }
+        }
+        return new Subs(subs);
+    }
 }

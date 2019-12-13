@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.models.CService;
+import com.netcracker.edu.fapi.models.Subs;
 import com.netcracker.edu.fapi.service.CServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,11 @@ public class CServiceController {
     @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
     public void deleteCService(@PathVariable Long id) {
         cServiceService.delete(id);
+    }
+
+    @GetMapping(value = "/sub/{id}")
+    public Subs getSubs(@PathVariable Long id) {
+        return this.cServiceService.getSubscribers(id);
     }
 
 }

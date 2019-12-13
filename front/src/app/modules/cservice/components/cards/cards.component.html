@@ -6,6 +6,8 @@
 
     <div class="card-top">
       <img src="{{cservice.image}}" alt="Logo" class="round">
+
+      <h5 *ngIf="isAdmin()">{{cservice.subs}}</h5>
     </div>
 
   </div>

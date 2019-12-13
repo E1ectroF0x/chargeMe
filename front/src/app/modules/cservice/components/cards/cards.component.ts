@@ -20,6 +20,7 @@ export class CardsComponent implements OnInit, OnDestroy {
   public wallets: Wallet[];
   public cservices: CService[];
   private subscriptions: Subscription[] = [];
+  public subs: string[];
   public isSelected: CService;
   @Input() public isPost;
 
@@ -67,6 +68,9 @@ export class CardsComponent implements OnInit, OnDestroy {
   private loadCServices(): void {
     this.subscriptions.push(this.cserviceService.getCServices().subscribe(accounts => {
       this.cservices = accounts;
+      this.cservices.forEach(service => {
+        this.getSubs(service);
+      });
     }));
   }
 
@@ -77,6 +81,14 @@ export class CardsComponent implements OnInit, OnDestroy {
 
   private select(cservice: CService): void {
     this.isSelected = this.isSelected === cservice ? null : cservice;
+  }
+
+  private getSubs(cserviceId: CService): void {
+    let num: string = null;
+    this.subscriptions.push(this.cserviceService.getSubscribers(cserviceId.id).subscribe( res => {
+      console.log(res);
+      cserviceId.subs = res.subscribers;
+    }));
   }
 
   ngOnDestroy(): void {
