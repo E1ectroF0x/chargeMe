@@ -19,14 +19,22 @@ public class WalletController {
         return walletService.getAllWallets();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public List<Wallet> getAllByCustomer(@PathVariable Long id) { return walletService.getWalletsByCustomer(id); }
+
     @RequestMapping(method = RequestMethod.POST)
-    public Wallet save(@RequestBody Wallet wallet, @PathVariable Long customer_id) {
-        return walletService.saveWallet(wallet, customer_id);
+    public void save(@RequestBody Long customer_id) {
+        walletService.saveWallet(customer_id);
     }
 
-    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id) {
         walletService.deleteWallet(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public void refill(@PathVariable Long id, @RequestBody String amount) {
+        walletService.refill(id, amount);
     }
 
 }

@@ -1,0 +1,19 @@
+<div *ngIf="cservice">
+
+  <div class="popup" (click)="cservice=null">
+
+    <div class="popup-content">
+
+
+      <div class="popup-content-details">
+        <h3>Description:</h3>
+        <h5>Service name: {{cservice.cservice.name}}</h5>
+        <h5>Genre: {{cservice.cservice.genre}}</h5>
+        <h5>Cost: <span class="cost-span">{{cservice.cservice.cost}}$</span>/mo</h5>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

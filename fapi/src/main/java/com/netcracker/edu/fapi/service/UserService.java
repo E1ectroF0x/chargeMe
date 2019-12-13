@@ -1,13 +1,19 @@
 package com.netcracker.edu.fapi.service;
 
+import com.netcracker.edu.fapi.models.ErrorModel;
+import com.netcracker.edu.fapi.models.RegistrationViewModel;
 import com.netcracker.edu.fapi.models.User;
+import com.netcracker.edu.fapi.models.UserViewModel;
 
 import java.util.List;
 
 public interface UserService {
 
     User getUserByLogin(String login);
-    List<User> getAll();
-    User save(User user);
+    List<UserViewModel> getAll();
+    //List<User> getAll();
+    //User save(User user);
+    ErrorModel save(RegistrationViewModel model);
+    void delete(Long id);
 
 }

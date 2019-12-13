@@ -9,29 +9,20 @@ public class ChargingData {
 
     private Long id;
 
-    private LocalDateTime startDate;
-
     private Customer customerId;
     private CService serviceId;
     private Wallet walletId;
 
-    public ChargingData() {}
+    private boolean isBlocked = false;
 
-    public ChargingData(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
+    public ChargingData() {}
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {return id;}
 
     public void setId(Long id) {this.id = id;}
-
-    @Basic
-    @Column(name = "startDate")
-    public LocalDateTime getStartDate() {return startDate; }
-
-    public void setStartDate(LocalDateTime startDate) {this.startDate = startDate; }
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
@@ -50,4 +41,10 @@ public class ChargingData {
     public Wallet getWalletId() {return walletId;}
 
     public void setWalletId(Wallet walletId) {this.walletId = walletId;}
+
+    @Basic
+    @Column(name = "is_blocked")
+    public boolean isBlocked() { return isBlocked; }
+
+    public void setBlocked(boolean blocked) { isBlocked = blocked; }
 }

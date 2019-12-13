@@ -1,0 +1,54 @@
+<div *ngIf="isPost">
+
+  <div class="popup">
+    <div class="popup-content">
+
+      <form method="post" class="popup-content-details" enctype="multipart/form-data" [formGroup]="postForm">
+        <div class="ml-2 mt-2 mr-2">
+          <div class="form-group">
+            <label for="serviceName">
+              Service name:
+            </label>
+            <input id="serviceName" placeholder="Name" class="form-control" name="name" [(ngModel)]="cservice.name" formControlName="name_">
+            <div class="invalid" *ngIf="isFormValid('name_')">
+              <span>This field is required!</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="serviceCost">
+              Cost:
+            </label>
+            <input id="serviceCost" placeholder="Cost" class="form-control" name="cost" [(ngModel)]="cservice.cost" formControlName="cost_">
+            <div class="invalid" *ngIf="isFormValid('cost_')">
+              <span>Check this field</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="serviceGenre">
+              Genre:
+            </label>
+            <input id="serviceGenre" placeholder="Genre" class="form-control" name="genre" [(ngModel)]="cservice.genre" formControlName="genre_">
+            <div class="invalid" *ngIf="isFormValid('genre_')">
+              <span>This field is required!</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="serviceDescription">
+              Description:
+            </label>
+            <input id="serviceDescription" placeholder="Description" class="form-control" name="description" [(ngModel)]="cservice.description">
+          </div>
+          <div class="form-group">
+            <p><input type="file" name="logo" multiple accept="image/png" (change)="onFileChange($event)"></p>
+          </div>
+          <div class="row justify-content-between">
+            <button type="submit" class="btn btn-warning mb-1 ml-3" (click)="onPost(cservice)">POST</button>
+            <button type="submit" class="btn btn-primary mb-1 mr-3" (click)="onClose()">Close window</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>

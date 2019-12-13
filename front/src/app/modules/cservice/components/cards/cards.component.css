@@ -1,0 +1,63 @@
+/*.card {
+  background-color: #e3e3e3;
+  cursor: pointer;
+  width: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .2);
+}
+
+.card:hover rect {
+  fill: rgba(85, 89, 92, .8);
+}
+
+ */
+
+.services-h {
+  margin-top: 150px;
+  margin-left: 100px;
+}
+
+.main {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.card-top {
+  height: 200px;
+  width: 200px;
+  background-color: rgba(255, 255, 255, .75);
+  border-radius: 100%;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.card-top:hover {
+  background-color: rgba(255, 180, 180, .8);
+}
+
+.round {
+  width: 90%;
+  height: auto;
+}
+
+.card-add-button button {
+  font-family: "Segoe UI", serif;
+  background-color: rgba(255, 180, 180, .8);
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+}
+
+.card-add-button button:hover {
+  background-color: rgba(255, 180, 180, 1);
+}

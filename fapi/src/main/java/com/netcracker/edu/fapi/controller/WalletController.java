@@ -25,8 +25,12 @@ public class WalletController {
     }
 
     @PostMapping
-    public Wallet saveWallet(@RequestBody Wallet wallet) {
-        return walletService.save(wallet);
-    }
+    public void saveWallet(@RequestBody Long customer_id) { walletService.save(customer_id); }
+
+    @PostMapping(value = "/{id}")
+    public void refillWallet(@PathVariable Long id, @RequestBody String amount) { walletService.refill(id, amount); }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteWallet(@PathVariable Long id) { walletService.delete(id); }
 
 }

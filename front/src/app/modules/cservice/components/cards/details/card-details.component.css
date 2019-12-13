@@ -1,0 +1,31 @@
+.popup {
+  background-color: rgba(0, 0, 0, .5);
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+}
+
+.popup .popup-content {
+  width: 30%;
+  height: 100%;
+  min-width: 450px;
+  border-radius: 4px;
+  margin: 300px auto;
+  color: #e3e3e3;
+  background-color: rgba(24,24,24, .5);
+}
+
+.popup-content-details {
+  margin: 0 0 4px 4px;
+}
+
+.cost-span {
+  font-weight: bold;
+}
+
+.invalid {
+  margin-top: 10px;
+  color: #dc3545;
+}

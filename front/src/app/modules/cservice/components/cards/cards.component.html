@@ -1,0 +1,21 @@
+<h1 class="services-h">Services you can subscribe:</h1>
+<div class="row justify-content-center pt-5 main">
+  <div class="d-flex m-5" *ngFor="let cservice of cservices"
+  [class.selected]="cservice === isSelected"
+  (click)="select(cservice)">
+
+    <div class="card-top">
+      <img src="{{cservice.image}}" alt="Logo" class="round">
+
+      <h5 *ngIf="isAdmin()">{{cservice.subs}}</h5>
+    </div>
+
+  </div>
+  <div class="d-flex m-5 card-add-button" *ngIf="isAdmin()">
+    <button (click)="isPost = !isPost">Add service</button>
+  </div>
+</div>
+
+<app-card-post-form [isPost]="isPost" (post)="postCService($event)" (isPostChange)="isPost = false"></app-card-post-form>
+<app-card-detail [cservice]="isSelected" (delete)="delete($event)" (subscribe)="subscribe($event)" ></app-card-detail>
+

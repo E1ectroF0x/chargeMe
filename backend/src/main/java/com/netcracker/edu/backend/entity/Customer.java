@@ -8,8 +8,11 @@ public class Customer {
     private long id;
     private String email;
 
+    public Customer() {}
+
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
